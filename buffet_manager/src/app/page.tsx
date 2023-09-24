@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Header />
-      {/* <AddFoodModal /> */}
+      <AddFoodModal />
       <div className={styles.dishesContainer}>
         <DishFrame type="quente" name="Tofu" />
         <DishFrame type="sopa" name="Sopa do campo" />
