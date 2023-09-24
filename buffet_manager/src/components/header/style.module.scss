@@ -1,0 +1,15 @@
+.headerContainer{
+display: flex;
+    width: 100vw;
+    height: fit-content;
+    padding: 0 10px;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    position: fixed;
+button {
+    padding: 5px;
+    background-color: rgb(75, 250, 62);
+    border-radius: 6px;
+    font-weight: 700;
+}
+}
