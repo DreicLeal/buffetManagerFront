@@ -1,20 +1,22 @@
-"use client"
-import IBuffetDatabase from "@/interface"
-import { useState } from "react"
-import styles from "./style.module.scss"
+"use client";
+import AddFoodModal from "../modal/addDishesModal";
+import styles from "./style.module.scss";
 
-
+import { useFood } from "@/contexts/foodContext";
 const Header = () => {
-    const [dishes, setDishes] = useState<IBuffetDatabase[]>([])
-    const addDishes = () => {
+  const { handleModal, modal } = useFood();
+  return (
+    <>
+      <header className={styles.headerContainer}>
+        <div className={styles.title}>
+          <h1>da Terra</h1>
+          <h2>Gestão buffet SALA</h2>
+        </div>
+        <button onClick={handleModal}>+</button>
+      </header>
+      {modal && <AddFoodModal />}
+    </>
+  );
+};
 
-}
-    return(
-        <header className={styles.headerContainer}> 
-        <h1>da Terra</h1>
-        <button onClick={()=> addDishes}>Adicionar</button>
-        </header>
-    )
-}
-
-export default Header
+export default Header;
