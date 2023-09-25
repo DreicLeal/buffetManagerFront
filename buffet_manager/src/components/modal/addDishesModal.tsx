@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import buffetFoodList from "@/database/database";
-
+import { useFood } from "@/contexts/foodContext";
 const AddFoodModal = () => {
+    const {handleModal, addDishes} = useFood()
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
@@ -15,17 +16,18 @@ const AddFoodModal = () => {
       .map((food) => food.name);
 
     setSuggestions(filterSuggestions);
-  };
+};
+const filteredDish = buffetFoodList.filter((food) => food.name === inputValue)
 
   const addToInput = (event: any) => {
-const liValue = event.target.textContent
-setInputValue(liValue)
-setSuggestions([])
-  }
+    const liValue = event.target.textContent;
+    setInputValue(liValue);
+    setSuggestions([]);
+  };
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.container}>
-        <button className={styles.closeBtn}>fechar</button>
+        <button onClick={handleModal} className={styles.closeBtn}>fechar</button>
         <h1>Qual prato deseja adicionar?</h1>
         <input
           type="text"
@@ -33,15 +35,17 @@ setSuggestions([])
           onChange={handleInputChange}
           placeholder="Digite o nome do prato"
         />
-                <ul>
+        <ul>
           {suggestions.map((suggestion, index) => (
-            <li onClick={addToInput} key={index}>{suggestion}</li>
+            <li onClick={addToInput} key={index}>
+              {suggestion}
+            </li>
           ))}
-        <button className={styles.addBtn}>Adicionar</button>
+          <button onClick={() => addDishes(filteredDish[0])} className={styles.addBtn}>Adicionar</button>
         </ul>
       </div>
     </div>
   );
 };
 
-export default AddFoodModal
+export default AddFoodModal;
