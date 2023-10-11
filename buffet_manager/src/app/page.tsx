@@ -1,15 +1,22 @@
 "use client";
 import styles from "./page.module.css";
-import App from "./_app";
+import Header from "@/components/Header/header";
+import { LoginForm } from "@/components/login/loginForm";
 
 export default function Home() {
+  let location = "";
+  if (window.location.href.includes("saloon")) {
+    location = "Sala";
+  } else if (window.location.href.includes("kitchen")) {
+    location = "Cozinha";
+  } else {
+  }
 
   return (
     <main className={styles.main}>
-      <App />
-      <div className={styles.dishesContainer}>
-
-      </div>
+      <h1>Bem vindo!</h1>
+      <Header text={location} />
+      <LoginForm />
     </main>
   );
 }
