@@ -5,6 +5,11 @@
   border: 1px solid #5c625a;
   border-radius: 4px;
   margin: 5px;
+  position: fixed;
+  bottom: 15px;
+  left: 55px;
+  z-index: 1;
+  background-color: white;
 }
 
 .messagesContainer {
