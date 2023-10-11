@@ -1,0 +1,22 @@
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  a {
+    display: flex;
+    margin: 10px;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    min-height: 165px;
+    width: fit-content;
+    min-width: 165px;
+    padding: 5px;
+    background-color: rgb(40, 253, 104);
+    color: #5c625a;
+    font-size: 40px;
+    font-weight: 700;
+  }
+}
