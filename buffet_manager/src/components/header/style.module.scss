@@ -10,11 +10,11 @@
   a {
     font-size: 20px;
     border-radius: 4px;
-    background-color: rgb(75, 250, 62);
+    background-color: rgb(40, 253, 104);
     font-weight: 600;
     height: fit-content;
     padding: 4px;
-    color: black;
+    color: #5c625a;
   }
   button {
     display: flex;
@@ -23,8 +23,9 @@
     width: 35px;
     height: 35px;
     font-size: 40px;
-    background-color: rgb(75, 250, 62);
+    background-color: rgb(40, 253, 104);
     border-radius: 6px;
     font-weight: 700;
+    color: #5c625a;
   }
 }
