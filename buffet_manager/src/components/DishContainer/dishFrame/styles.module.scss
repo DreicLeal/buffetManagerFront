@@ -1,16 +1,59 @@
-.frame {
+.frameContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 10px;
-  margin: 1.5px;
-  width: 95vw;
-  height: 85px;
-  border-radius: 6px;
   border: 1px solid black;
+  border-radius: 4px;
+  margin-bottom: 2px;
 }
-#level0, #level1, #level2, #level3, #level4 {
+.frame {
+  display: flex;
+  background-color: #5b5a62;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px;
+  padding-bottom: 0;
+  width: 95vw;
+  height: 75px;
+  border-radius: 4px 4px 0 0;
+}
+.categoryContainer {
+  display: flex;
+}
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.replenishContainer {
+  display: flex;
+  align-items: center;
+}
+.chronoContainer > p {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  button {
+    margin: 2px;
+    border-radius: 4px;
+    height: 30px;
+    width: 30px;
+  }
+}
+.white {
+  color: #ffffff;
+}
+#level0,
+#level1,
+#level2,
+#level3,
+#level4 {
   transition: background-color 0.5s ease;
+  width: 100%;
+  border-radius: 0 0 4px 4px;
+  padding: 4px;
 }
 #level0 {
   background-color: rgb(255, 74, 74);
