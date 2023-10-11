@@ -1,6 +1,9 @@
+// "use client";
 import "./globals.css";
 import "@/scss/_reset.scss";
 import { Inter } from "next/font/google";
+import Link from "next/link";
+import { Providers } from "@/providers/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <Providers>
+        <body className={inter.className}>{children}</body>
+      </Providers>
     </html>
   );
 }
