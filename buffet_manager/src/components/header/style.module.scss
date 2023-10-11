@@ -7,6 +7,15 @@
   border-bottom: 1px solid black;
   position: fixed;
   background-color: white;
+  a {
+    font-size: 20px;
+    border-radius: 4px;
+    background-color: rgb(75, 250, 62);
+    font-weight: 600;
+    height: fit-content;
+    padding: 4px;
+    color: black;
+  }
   button {
     display: flex;
     justify-content: center;

@@ -9,8 +9,8 @@ const Header = ({ text }: { text: string }) => {
   return (
     <>
       <header className={styles.headerContainer}>
-        <div className={styles.title}>
           <Link href="/lobby">Lobby</Link>
+        <div className={styles.title}>
           <h1>da Terra</h1>
           <h2>Gestão buffet {text}</h2>
         </div>
