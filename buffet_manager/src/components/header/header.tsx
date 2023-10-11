@@ -1,16 +1,18 @@
 "use client";
-import AddFoodModal from "../modal/addDishesModal";
+import Link from "next/link";
+import AddFoodModal from "../modal/addDishes/addDishesModal";
 import styles from "./style.module.scss";
-
 import { useFood } from "@/contexts/foodContext";
-const Header = () => {
+
+const Header = ({ text }: { text: string }) => {
   const { handleModal, modal } = useFood();
   return (
     <>
       <header className={styles.headerContainer}>
         <div className={styles.title}>
+          <Link href="/lobby">Lobby</Link>
           <h1>da Terra</h1>
-          <h2>Gestão buffet SALA</h2>
+          <h2>Gestão buffet {text}</h2>
         </div>
         <button onClick={handleModal}>+</button>
       </header>
