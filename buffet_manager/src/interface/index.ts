@@ -1,7 +1,54 @@
-interface IBuffetDatabase {
-  type: string;
+import { UseFormRegisterReturn, FieldError } from "react-hook-form";
+
+export interface IBuffetDatabase {
+  id?: string;
+  name: string;
+  category: string;
+  extra?: boolean;
+  level?: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface IloginInput {
+  name: string;
+  password: string;
+}
+
+export interface IMessage {
+  id: string;
+  text: string;
+  checked?: boolean;
+  created_at?: string;
+  user?:IUser;
+}
+export interface IUser {
+  id: string;
   name: string;
 }
 
+export interface IUserProfile {
+  id: string;
+  is_adm: boolean;
+  name:string;
+  dishes?: IBuffetDatabase[];
+  messages?:IMessage[];
+}
 
-export default IBuffetDatabase
+export interface INewMessage {
+  text: string;
+  user:string;
+}
+
+export interface IMessagesModalProps {
+  messageId: string;
+  text: string;
+}
+
+export interface IInputProps {
+  label: string;
+  type: "text" | "password";
+  register: UseFormRegisterReturn<string>;
+  error?: FieldError;
+  defaultValue: string | undefined | null;
+}
