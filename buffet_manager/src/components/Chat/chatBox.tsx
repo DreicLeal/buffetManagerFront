@@ -4,6 +4,7 @@ import { INewMessage } from "@/interface";
 import { Input } from "../Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useEffect } from "react";
+import SendIcon from '@mui/icons-material/Send';
 import styles from "./styles.module.scss";
 
 const ChatBox = () => {
@@ -35,9 +36,7 @@ const ChatBox = () => {
               user === message.user?.id ? styles.yourMessage : styles.partner
             }
           >
-            <p>
-              {message.text}
-            </p>
+            <p>{message.text}</p>
             <p className={styles.time}>
               {message.created_at!.slice(
                 message.created_at!.indexOf("T") + 1,
@@ -47,7 +46,7 @@ const ChatBox = () => {
           </li>
         ))}
       </ul>
-      <form onSubmit={handleSubmit(submit)}>
+      <form className={styles.msgForm} onSubmit={handleSubmit(submit)}>
         <Input
           label="Sua mensagem"
           type="text"
@@ -55,7 +54,7 @@ const ChatBox = () => {
           defaultValue=""
           error={errors.text}
         />
-        <button type="submit">Ok</button>
+        <button type="submit"><SendIcon/></button>
       </form>
     </div>
   );

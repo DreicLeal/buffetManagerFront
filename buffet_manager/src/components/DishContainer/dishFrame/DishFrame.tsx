@@ -4,7 +4,8 @@ import styles from "./styles.module.scss";
 import { useFood } from "@/contexts/foodContext";
 import { Timer } from "@/components/chrono/Chrono";
 import { useEffect } from "react";
-
+import RefreshIcon from '@mui/icons-material/Refresh';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 export default function DishFrame({
   name,
   category,
@@ -51,9 +52,9 @@ export default function DishFrame({
               {level! < 3 && <Timer initialTime={initialTime} />}
             </div>
             <div className={styles.buttonContainer}>
-              <button onClick={replenish}>Refill</button>
+              <RefreshIcon className={styles.replenishBtn}onClick={replenish}/>
               <button value={level} onClick={handleRangeChange}>
-                ←
+                <TrendingDownIcon/>
               </button>
             </div>
           </div>
