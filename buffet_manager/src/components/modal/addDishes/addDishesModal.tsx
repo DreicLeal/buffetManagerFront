@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import { useFood } from "@/contexts/foodContext";
 import { buffetFoodList } from "@/database/database";
+import CloseIcon from "@mui/icons-material/Close";
 
 const AddFoodModal = () => {
   const { handleModal, addFood } = useFood();
@@ -36,7 +37,7 @@ const AddFoodModal = () => {
     <div className={styles.modalOverlay}>
       <div className={styles.container}>
         <button onClick={handleModal} className={styles.closeBtn}>
-          fechar
+          <CloseIcon />
         </button>
         <h1>Qual prato deseja adicionar?</h1>
         <input
@@ -51,12 +52,15 @@ const AddFoodModal = () => {
               {suggestion}
             </li>
           ))}
-          <input
-            type="checkbox"
-            checked={checkboxValue}
-            name="extra"
-            onChange={handleCheckbox}
-          />
+          <div className={styles.extraDish}>
+            <p>Prato extra?</p>
+            <input
+              type="checkbox"
+              checked={checkboxValue}
+              name="extra"
+              onChange={handleCheckbox}
+            />
+          </div>
           <button onClick={() => addFood(dishData)} className={styles.addBtn}>
             Adicionar
           </button>
