@@ -68,6 +68,17 @@ export const UserProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const deleteAllMessages = async () => {
+    try {
+      await buffetManagerApi.delete("/message", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setMessages([]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const updateMessages = async (messageId: string, isChecked: boolean) => {
     const checked = { checked: isChecked };
     try {
