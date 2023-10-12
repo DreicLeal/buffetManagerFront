@@ -7,7 +7,7 @@ import EndModal from "../modal/endModal/EndModal";
 import { useUser } from "@/contexts/userContext";
 
 const Header = ({ text }: { text: string }) => {
-  const { endModal, setEndModal } = useUser();
+  const { endModal, setEndModal, token } = useUser();
   const { handleModal, modal } = useFood();
 
   return (
@@ -18,10 +18,19 @@ const Header = ({ text }: { text: string }) => {
           <h1>da Terra</h1>
           <h2>Gestão buffet {text}</h2>
         </div>
-        <button onClick={()=>setEndModal(!endModal)}>Encerrar</button>
-        <button onClick={handleModal}>+</button>
+        {token && (
+          <div className={styles.btnContainer}>
+            <button
+              className={styles.endBtn}
+              onClick={() => setEndModal(!endModal)}
+            >
+              Encerrar
+            </button>
+            <button onClick={handleModal}>+</button>
+          </div>
+        )}
       </header>
-      {endModal && <EndModal/>}
+      {endModal && <EndModal />}
       {modal && <AddFoodModal />}
     </>
   );

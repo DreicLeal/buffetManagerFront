@@ -8,12 +8,14 @@ const EndModal = () => {
   const { deleteAllFood } = useFood();
   return (
     <div className={styles.modalOverlay}>
-      <button className={styles.closeBtn} onClick={() => setEndModal(false)}>
-        <CloseIcon />
-      </button>
-      <div className={styles.btnContainer}>
-        <button onClick={() => deleteAllMessages}>Deletar Buffet</button>
-        <button onClick={() => deleteAllFood}>Limpar Chat</button>
+      <div className={styles.modalContainer}>
+        <button className={styles.closeBtn} onClick={() => setEndModal(false)}>
+          <CloseIcon />
+        </button>
+        <div className={styles.btnContainer}>
+          <button onClick={() => deleteAllMessages}>Deletar Buffet</button>
+          <button onClick={() => deleteAllFood}>Limpar Chat</button>
+        </div>
       </div>
     </div>
   );
