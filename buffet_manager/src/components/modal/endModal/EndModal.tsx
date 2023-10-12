@@ -6,6 +6,7 @@ import styles from "./styles.module.scss";
 const EndModal = () => {
   const { setEndModal, deleteAllMessages } = useUser();
   const { deleteAllFood } = useFood();
+  
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
@@ -13,8 +14,8 @@ const EndModal = () => {
           <CloseIcon />
         </button>
         <div className={styles.btnContainer}>
-          <button onClick={() => deleteAllMessages}>Deletar Buffet</button>
-          <button onClick={() => deleteAllFood}>Limpar Chat</button>
+          <button onClick={() => deleteAllFood()}>Deletar Buffet</button>
+          <button onClick={() => deleteAllMessages()}>Limpar Chat</button>
         </div>
       </div>
     </div>

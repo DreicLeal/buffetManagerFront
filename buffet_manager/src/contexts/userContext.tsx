@@ -17,7 +17,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
   const [messages, setMessages] = useState<IMessage[]>([] as IMessage[]);
   const [messageModal, setMessageModal] = useState<boolean>(false);
   const [user, setUser] = useState<string>("");
-  const [endModal, setEndModal] = useState<boolean>(false)
+  const [endModal, setEndModal] = useState<boolean>(false);
 
   const login = async (loginData: IloginInput) => {
     try {
@@ -75,6 +75,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessages([]);
+      setEndModal(false);
     } catch (error) {
       console.log(error);
     }
