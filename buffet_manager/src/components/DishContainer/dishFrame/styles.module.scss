@@ -1,6 +1,5 @@
 .frameContainer {
   display: flex;
-  flex-direction: column;
   border: 1px solid black;
   border-radius: 4px;
   margin-bottom: 2px;
@@ -56,54 +55,55 @@
 .white {
   color: #ffffff;
 }
-#level0,
-#level1,
-#level2,
-#level3,
-#level4 {
+.level0,
+.level1,
+.level2,
+.level3,
+.level4 {
   transition: background-color 0.5s ease;
-  width: 100%;
+  height: auto;
   border-radius: 0 0 4px 4px;
   padding: 4px;
+  height: 10px;
 }
-#level0 {
+.level0 {
   background-color: rgb(255, 74, 74);
 }
 
-#level1 {
+.level1 {
   background-color: rgb(255, 123, 0);
 }
 
-#level2 {
+.level2 {
   background-color: rgb(254, 173, 0);
 }
 
-#level3 {
+.level3 {
   background-color: rgb(254, 223, 0);
 }
 
-#level4 {
+.level4 {
   background-color: rgb(40, 253, 104);
 }
-.range-slider {
-  width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 10px;
-  background: white;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+// .range-slider {
+//   width: 100%;
+//   -webkit-appearance: none;
+//   appearance: none;
+//   height: 10px;
+//   background: white;
+//   outline: none;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+// }
 
-.range-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #ffffff;
-  border: 1px solid #000000;
-  border-radius: 50%;
-  cursor: pointer;
-}
+// .range-slider::-webkit-slider-thumb {
+//   -webkit-appearance: none;
+//   appearance: none;
+//   width: 20px;
+//   height: 20px;
+//   background: #ffffff;
+//   border: 1px solid #000000;
+//   border-radius: 50%;
+//   cursor: pointer;
+// }
