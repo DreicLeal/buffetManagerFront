@@ -30,4 +30,5 @@ export interface FoodProviderData {
   addFood: (dishData: IBuffetDatabase) => Promise<void>;
   setDishes: Dispatch<SetStateAction<IBuffetDatabase[]>>;
   updateDishes: (name: string, toUpdateData: number) => Promise<void>;
+  deleteAllFood: () => Promise<void>
 }

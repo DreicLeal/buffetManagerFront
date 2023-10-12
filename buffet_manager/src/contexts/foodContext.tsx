@@ -26,6 +26,15 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       console.log(error);
     }
   };
+  const deleteAllFood = async () => {
+    try {
+      await buffetManagerApi.delete("/dishes", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getDishes = async () => {
     try {
@@ -64,6 +73,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
         handleModal,
         modal,
         addFood,
+        deleteAllFood,
         setDishes,
         updateDishes,
       }}
