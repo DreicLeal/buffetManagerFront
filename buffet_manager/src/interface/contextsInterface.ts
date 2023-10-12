@@ -21,6 +21,8 @@ export interface UserProviderData {
   getMessages: () => Promise<void>;
   deleteAllMessages: () => Promise<void>
   user: string;
+  setEndModal: Dispatch<SetStateAction<boolean>>
+  endModal: boolean
 }
 
 export interface FoodProviderData {

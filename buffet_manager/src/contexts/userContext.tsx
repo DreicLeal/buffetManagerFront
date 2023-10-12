@@ -17,6 +17,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
   const [messages, setMessages] = useState<IMessage[]>([] as IMessage[]);
   const [messageModal, setMessageModal] = useState<boolean>(false);
   const [user, setUser] = useState<string>("");
+  const [endModal, setEndModal] = useState<boolean>(false)
 
   const login = async (loginData: IloginInput) => {
     try {
@@ -93,6 +94,8 @@ export const UserProvider = ({ children }: IProviderProps) => {
   return (
     <UserContext.Provider
       value={{
+        setEndModal,
+        endModal,
         login,
         token,
         postMessages,
