@@ -19,7 +19,10 @@ export interface UserProviderData {
   setMessageModal: Dispatch<SetStateAction<boolean>>;
   messageModal: boolean;
   getMessages: () => Promise<void>;
+  deleteAllMessages: () => Promise<void>
   user: string;
+  setEndModal: Dispatch<SetStateAction<boolean>>
+  endModal: boolean
 }
 
 export interface FoodProviderData {
@@ -29,4 +32,5 @@ export interface FoodProviderData {
   addFood: (dishData: IBuffetDatabase) => Promise<void>;
   setDishes: Dispatch<SetStateAction<IBuffetDatabase[]>>;
   updateDishes: (name: string, toUpdateData: number) => Promise<void>;
+  deleteAllFood: () => Promise<void>
 }

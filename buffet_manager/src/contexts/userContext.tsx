@@ -17,6 +17,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
   const [messages, setMessages] = useState<IMessage[]>([] as IMessage[]);
   const [messageModal, setMessageModal] = useState<boolean>(false);
   const [user, setUser] = useState<string>("");
+  const [endModal, setEndModal] = useState<boolean>(false);
 
   const login = async (loginData: IloginInput) => {
     try {
@@ -68,6 +69,18 @@ export const UserProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const deleteAllMessages = async () => {
+    try {
+      await buffetManagerApi.delete("/message", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setMessages([]);
+      setEndModal(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const updateMessages = async (messageId: string, isChecked: boolean) => {
     const checked = { checked: isChecked };
     try {
@@ -82,6 +95,8 @@ export const UserProvider = ({ children }: IProviderProps) => {
   return (
     <UserContext.Provider
       value={{
+        setEndModal,
+        endModal,
         login,
         token,
         postMessages,
@@ -90,6 +105,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
         messageModal,
         setMessageModal,
         getMessages,
+        deleteAllMessages,
         user,
       }}
     >

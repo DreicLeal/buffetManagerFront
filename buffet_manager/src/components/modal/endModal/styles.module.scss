@@ -1,0 +1,50 @@
+.modalOverlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  .closeBtn {
+    align-self: flex-end;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  button{
+    display: flex;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    min-height: 165px;
+    min-width: 190px;
+    padding: 5px;
+    background-color: rgb(40, 253, 104);
+    color: #5c625a;
+    font-size: 40px;
+    font-weight: 700;
+  }
+}

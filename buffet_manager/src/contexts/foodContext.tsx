@@ -11,7 +11,7 @@ import {
 const FoodContext = createContext<FoodProviderData>({} as FoodProviderData);
 
 export const FoodProvider = ({ children }: IProviderProps) => {
-  const { token } = useUser();
+  const { token, setEndModal } = useUser();
   const [dishes, setDishes] = useState<IBuffetDatabase[]>([]);
   const [modal, setModal] = useState<boolean>(false);
 
@@ -22,6 +22,17 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       });
       setModal(!modal);
       getDishes();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const deleteAllFood = async () => {
+    try {
+      await buffetManagerApi.delete("/dishes", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setDishes([])
+      setEndModal(false);
     } catch (error) {
       console.log(error);
     }
@@ -64,6 +75,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
         handleModal,
         modal,
         addFood,
+        deleteAllFood,
         setDishes,
         updateDishes,
       }}
