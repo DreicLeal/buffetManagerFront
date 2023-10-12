@@ -19,6 +19,7 @@ export interface UserProviderData {
   setMessageModal: Dispatch<SetStateAction<boolean>>;
   messageModal: boolean;
   getMessages: () => Promise<void>;
+  deleteAllMessages: () => Promise<void>
   user: string;
 }
 

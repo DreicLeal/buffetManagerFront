@@ -101,6 +101,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
         messageModal,
         setMessageModal,
         getMessages,
+        deleteAllMessages,
         user,
       }}
     >
