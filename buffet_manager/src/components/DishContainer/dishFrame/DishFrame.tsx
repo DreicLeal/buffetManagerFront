@@ -38,6 +38,7 @@ export default function DishFrame({
 
   return (
     <div className={styles.frameContainer}>
+      <div className={styles[`level${level}`]}></div>
       <div className={frameClass}>
         <div className={styles.infoContainer}>
           <div>
@@ -60,7 +61,6 @@ export default function DishFrame({
           </div>
         </div>
       </div>
-      <div id={styles[`level${level}`]}></div>
     </div>
   );
 }
