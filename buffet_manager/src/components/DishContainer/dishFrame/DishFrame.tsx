@@ -12,7 +12,7 @@ export default function DishFrame({
   level,
 }: IBuffetDatabase & { initialTime: number }) {
   const { updateDishes } = useFood();
-
+  const location = window.location.pathname === "/saloon";
   useEffect(() => {
     if (level! < 3 && !localStorage.getItem(`initialTime_${name}`)) {
       localStorage.setItem(`initialTime_${name}`, Date.now().toString());
@@ -56,19 +56,21 @@ export default function DishFrame({
             <div className={styles.chronoContainer}>
               {level! < 3 && <Timer initialTime={initialTime} />}
             </div>
-            <div className={styles.buttonContainer}>
-              <RefreshIcon
-                className={styles.replenishBtn}
-                onClick={replenish}
-              />
-              <button
-                className={styles.trending}
-                value={level}
-                onClick={handleRangeChange}
-              >
-                ←
-              </button>
-            </div>
+            {location && (
+              <div className={styles.buttonContainer}>
+                <RefreshIcon
+                  className={styles.replenishBtn}
+                  onClick={replenish}
+                />
+                <button
+                  className={styles.trending}
+                  value={level}
+                  onClick={handleRangeChange}
+                >
+                  ←
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
