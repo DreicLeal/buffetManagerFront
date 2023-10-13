@@ -5,7 +5,6 @@ import { useFood } from "@/contexts/foodContext";
 import { Timer } from "@/components/chrono/Chrono";
 import { useEffect } from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 export default function DishFrame({
   name,
   category,
