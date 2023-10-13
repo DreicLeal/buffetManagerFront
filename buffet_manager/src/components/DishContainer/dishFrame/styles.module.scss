@@ -1,6 +1,6 @@
 .frameContainer {
   display: flex;
-  border: 1px solid black;
+  border: 1px solid #5b5a62;
   border-radius: 4px;
   margin-bottom: 2px;
 }
@@ -13,7 +13,7 @@
   padding-bottom: 0;
   width: 95vw;
   height: 75px;
-  border-radius: 4px 4px 0 0;
+  border-radius: 0 4px 4px 0;
 }
 .categoryContainer {
   display: flex;
@@ -42,14 +42,10 @@
     height: 35px;
     width: 35px;
   }
-  button {
+  .trending {
     border-radius: 4px;
     width: 35px;
-    svg {
-      width: 30px;
-      height: 20px;
-      transform: scaleX(-1);
-    }
+    height: 20px;
   }
 }
 .white {
@@ -61,10 +57,9 @@
 .level3,
 .level4 {
   transition: background-color 0.5s ease;
-  height: auto;
-  border-radius: 0 0 4px 4px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
   padding: 4px;
-  height: 10px;
 }
 .level0 {
   background-color: rgb(255, 74, 74);
@@ -85,25 +80,3 @@
 .level4 {
   background-color: rgb(40, 253, 104);
 }
-// .range-slider {
-//   width: 100%;
-//   -webkit-appearance: none;
-//   appearance: none;
-//   height: 10px;
-//   background: white;
-//   outline: none;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-// }
-
-// .range-slider::-webkit-slider-thumb {
-//   -webkit-appearance: none;
-//   appearance: none;
-//   width: 20px;
-//   height: 20px;
-//   background: #ffffff;
-//   border: 1px solid #000000;
-//   border-radius: 50%;
-//   cursor: pointer;
-// }
