@@ -24,7 +24,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
       const res = await buffetManagerApi.post("/login", loginData);
       setToken(res.data.token);
       localStorage.setItem("@TOKEN", res.data.token);
-      setTimeout(retrieveProfile, 1000);
+      setTimeout(retrieveProfile, 500);
     } catch (error) {
       console.log(error);
     }
