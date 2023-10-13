@@ -12,6 +12,7 @@ const EndModal = () => {
     deleteAllMessages();
     localStorage.removeItem("@TOKEN")
     localStorage.removeItem("@UserId")
+    localStorage.clear()
     setTimeout(()=> {
       window.location.replace("http://localhost:3000/")
     },500)

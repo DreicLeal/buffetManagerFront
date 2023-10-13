@@ -9,7 +9,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import styles from "./styles.module.scss";
 
 export default function Kitchen() {
-  const { messageModal, getMessages } = useUser();
+  const { messageModal, getMessages,token } = useUser();
   const [chatToggle, setToggleChat] = useState<boolean>(false);
   useEffect(() => {
     getMessages();
@@ -21,6 +21,8 @@ export default function Kitchen() {
   const handleChat = () => {
     setToggleChat(!chatToggle);
   };
+
+  !token && window.location.assign("http://localhost:3000/")
 
   return (
     <>
