@@ -28,7 +28,7 @@ export default function DishFrame({
     const newLevel = parseInt(event.target.value) - 1;
     updateDishes(name, newLevel);
   };
-  const replenish = (event: any) => {
+  const replenish = () => {
     updateDishes(name, 4);
     localStorage.removeItem(`initialTime_${name}`);
   };
