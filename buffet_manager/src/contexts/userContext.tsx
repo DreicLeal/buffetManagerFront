@@ -5,7 +5,7 @@ import {
   UserProviderData,
 } from "@/interface/contextsInterface";
 import { buffetManagerApi } from "@/requests/api";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const UserContext = createContext<UserProviderData>({} as UserProviderData);
 
