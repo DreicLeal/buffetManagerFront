@@ -33,12 +33,17 @@ export default function DishFrame({
     updateDishes(name, 4);
     localStorage.removeItem(`initialTime_${name}`);
   };
-
+  const fraction = () => {
+    if (level! < 3) {
+      return level == 2 ? "½" : "¼";
+    }
+    return "1";
+  };
   const frameClass = `${styles.frame}`;
 
   return (
     <div className={styles.frameContainer}>
-      <div className={styles[`level${level}`]}></div>
+      <div className={styles[`level${level}`]}>{fraction()}</div>
       <div className={frameClass}>
         <div className={styles.infoContainer}>
           <div>
