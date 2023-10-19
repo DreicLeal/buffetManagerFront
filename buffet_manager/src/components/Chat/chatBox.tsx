@@ -4,11 +4,17 @@ import { INewMessage } from "@/interface";
 import { Input } from "../Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useEffect } from "react";
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
 import styles from "./styles.module.scss";
 
 const ChatBox = () => {
-  const { postMessages, getMessages, messages } = useUser();
+  const {
+    postMessages,
+    getMessages,
+    messages,
+    handleCheckbox,
+    rocketMsg
+  } = useUser();
   const user = localStorage.getItem("@UserId");
   useEffect(() => {
     getMessages();
@@ -47,14 +53,28 @@ const ChatBox = () => {
         ))}
       </ul>
       <form className={styles.msgForm} onSubmit={handleSubmit(submit)}>
-        <Input
-          label="Sua mensagem"
-          type="text"
-          register={register("text")}
-          defaultValue=""
-          error={errors.text}
-        />
-        <button type="submit"><SendIcon/></button>
+        <div>
+          <Input
+            label="Sua mensagem"
+            type="text"
+            register={register("text")}
+            defaultValue=""
+            error={errors.text}
+          />
+          <div>
+            <p>Torpedo</p>
+            <Input
+              type="checkbox"
+              label="Torpedo"
+              value={rocketMsg}
+              register={register("rocket")}
+              onChange={handleCheckbox}
+            />
+          </div>
+        </div>
+        <button type="submit">
+          <SendIcon />
+        </button>
       </form>
     </div>
   );
