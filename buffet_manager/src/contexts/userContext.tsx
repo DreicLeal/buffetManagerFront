@@ -15,10 +15,12 @@ export const UserProvider = ({ children }: IProviderProps) => {
 
   const [token, setToken] = useState(logToken);
   const [messages, setMessages] = useState<IMessage[]>([] as IMessage[]);
-  const [messageModal, setMessageModal] = useState<boolean>(false);
   const [user, setUser] = useState<string>("");
   const [endModal, setEndModal] = useState<boolean>(false);
-
+  const [rocketMsg, setRocketMsg] = useState<boolean>(false);
+  const handleCheckbox = () => {
+    setRocketMsg(!rocketMsg);
+  };
   const login = async (loginData: IloginInput) => {
     try {
       const res = await buffetManagerApi.post("/login", loginData);
@@ -50,7 +52,6 @@ export const UserProvider = ({ children }: IProviderProps) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       const newMessage: IMessage = response.data;
-      console.log(newMessage, "nova msg");
       setMessages([...messages, newMessage]);
     } catch (error) {
       console.log(error);
@@ -95,6 +96,9 @@ export const UserProvider = ({ children }: IProviderProps) => {
   return (
     <UserContext.Provider
       value={{
+        rocketMsg,
+        setRocketMsg,
+        handleCheckbox,
         setEndModal,
         endModal,
         login,
@@ -102,8 +106,6 @@ export const UserProvider = ({ children }: IProviderProps) => {
         postMessages,
         messages,
         updateMessages,
-        messageModal,
-        setMessageModal,
         getMessages,
         deleteAllMessages,
         user,
