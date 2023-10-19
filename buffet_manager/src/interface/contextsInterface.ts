@@ -1,10 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
-import {
-  IBuffetDatabase,
-  IMessage,
-  INewMessage,
-  IloginInput,
-} from ".";
+import { IBuffetDatabase, IMessage, INewMessage, IloginInput } from ".";
 
 export interface IProviderProps {
   children: ReactNode;
@@ -16,13 +11,14 @@ export interface UserProviderData {
   postMessages: (messageContent: INewMessage) => Promise<void>;
   updateMessages: (messageId: string, isChecked: boolean) => Promise<void>;
   messages: IMessage[];
-  setMessageModal: Dispatch<SetStateAction<boolean>>;
-  messageModal: boolean;
   getMessages: () => Promise<void>;
-  deleteAllMessages: () => Promise<void>
+  deleteAllMessages: () => Promise<void>;
   user: string;
-  setEndModal: Dispatch<SetStateAction<boolean>>
-  endModal: boolean
+  setEndModal: Dispatch<SetStateAction<boolean>>;
+  endModal: boolean;
+  handleCheckbox: () => void;
+  setRocketMsg: Dispatch<SetStateAction<boolean>>;
+  rocketMsg: boolean;
 }
 
 export interface FoodProviderData {
@@ -32,5 +28,5 @@ export interface FoodProviderData {
   addFood: (dishData: IBuffetDatabase) => Promise<void>;
   setDishes: Dispatch<SetStateAction<IBuffetDatabase[]>>;
   updateDishes: (name: string, toUpdateData: number) => Promise<void>;
-  deleteAllFood: () => Promise<void>
+  deleteAllFood: () => Promise<void>;
 }
