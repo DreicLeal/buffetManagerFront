@@ -9,7 +9,11 @@ import ChatIcon from "@mui/icons-material/Chat";
 import styles from "./styles.module.scss";
 
 export default function Kitchen() {
-  const { messageModal, getMessages,token } = useUser();
+  const token = localStorage.getItem("@TOKEN");
+  !token && window.location.assign("http://localhost:3000/");
+
+  const { getMessages, rocketMsg, messages } = useUser();
+
   const [chatToggle, setToggleChat] = useState<boolean>(false);
   useEffect(() => {
     getMessages();
@@ -22,12 +26,15 @@ export default function Kitchen() {
     setToggleChat(!chatToggle);
   };
 
-  !token && window.location.assign("http://localhost:3000/")
+  const rocket = messages.filter((message) => message.rocket === true);
+  const rocketModal = rocketMsg && rocket[0].rocket && rocket[0].checked;
 
   return (
     <>
       <Header text="Cozinha" />
-      {messageModal && <NewMessagesModal messageId="soon" text="soon" />}
+      {rocketModal && (
+        <NewMessagesModal messageId={rocket[0]!.id} text={rocket[0]!.text} />
+      )}
       <DishContainer />;
       <ChatIcon className={styles.toggleChat} onClick={handleChat} />
       {chatToggle && <ChatBox />}
