@@ -5,12 +5,12 @@ import styles from "./styles.module.scss";
 import { useUser } from "@/contexts/userContext";
 
 const NewMessagesModal = ({ messageId, text }: IMessagesModalProps) => {
-  const { updateMessages, setMessageModal } = useUser();
+  const { updateMessages, setRocketMsg } = useUser();
 
   const handleModal = (id: string) => {
     const isChecked = true;
     updateMessages(id, isChecked);
-    setMessageModal(false);
+    setRocketMsg(false);
   };
 
   return (

@@ -20,7 +20,8 @@ export interface IMessage {
   text: string;
   checked?: boolean;
   created_at?: string;
-  user?:IUser;
+  user?: IUser;
+  rocket?: boolean;
 }
 export interface IUser {
   id: string;
@@ -30,14 +31,15 @@ export interface IUser {
 export interface IUserProfile {
   id: string;
   is_adm: boolean;
-  name:string;
+  name: string;
   dishes?: IBuffetDatabase[];
-  messages?:IMessage[];
+  messages?: IMessage[];
 }
 
 export interface INewMessage {
   text: string;
-  user:string;
+  user: string;
+  rocket?: boolean;
 }
 
 export interface IMessagesModalProps {
@@ -47,8 +49,10 @@ export interface IMessagesModalProps {
 
 export interface IInputProps {
   label: string;
-  type: "text" | "password";
+  type: "text" | "password" | "checkbox";
   register: UseFormRegisterReturn<string>;
   error?: FieldError;
-  defaultValue: string | undefined | null;
+  defaultValue?: string | undefined | null;
+  value?: boolean;
+  onChange?: () => void;
 }
