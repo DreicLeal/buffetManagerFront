@@ -1,5 +1,11 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
-import { IBuffetDatabase, IMessage, INewMessage, IloginInput } from ".";
+import {
+  IBuffetDatabase,
+  IMessage,
+  INewMessage,
+  IloginInput,
+  IupdateMsgProps,
+} from ".";
 
 export interface IProviderProps {
   children: ReactNode;
@@ -9,7 +15,10 @@ export interface UserProviderData {
   login: (loginData: IloginInput) => Promise<void>;
   token: string | null;
   postMessages: (messageContent: INewMessage) => Promise<void>;
-  updateMessages: (messageId: string, isChecked: boolean) => Promise<void>;
+  updateMessages: (
+    messageId: string,
+    updatedContent: IupdateMsgProps
+  ) => Promise<void>;
   messages: IMessage[];
   getMessages: () => Promise<void>;
   deleteAllMessages: () => Promise<void>;
