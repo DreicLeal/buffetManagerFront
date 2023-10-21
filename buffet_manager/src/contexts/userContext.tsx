@@ -1,5 +1,10 @@
 "use client";
-import { IMessage, INewMessage, IloginInput } from "@/interface";
+import {
+  IMessage,
+  INewMessage,
+  IloginInput,
+  IupdateMsgProps,
+} from "@/interface";
 import {
   IProviderProps,
   UserProviderData,
@@ -70,6 +75,10 @@ export const UserProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  useEffect(() => {
+    getMessages();
+  }, []);
+
   const deleteAllMessages = async () => {
     try {
       await buffetManagerApi.delete("/message", {
@@ -82,10 +91,12 @@ export const UserProvider = ({ children }: IProviderProps) => {
     }
   };
 
-  const updateMessages = async (messageId: string, isChecked: boolean) => {
-    const checked = { checked: isChecked };
+  const updateMessages = async (
+    messageId: string,
+    updatedContent: IupdateMsgProps
+  ) => {
     try {
-      await buffetManagerApi.patch(`/message/${messageId}`, checked, {
+      await buffetManagerApi.patch(`/message/${messageId}`, updatedContent, {
         headers: { Authorization: `Bearer ${token}` },
       });
     } catch (error) {
