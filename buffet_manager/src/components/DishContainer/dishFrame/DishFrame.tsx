@@ -5,6 +5,7 @@ import { useFood } from "@/contexts/foodContext";
 import { Timer } from "@/components/chrono/Chrono";
 import { useEffect } from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
+
 export default function DishFrame({
   name,
   category,
@@ -33,10 +34,14 @@ export default function DishFrame({
     localStorage.removeItem(`initialTime_${name}`);
   };
   const fraction = () => {
-    if (level! < 3) {
-      return level == 2 ? "½" : "¼";
+    if (level! == 4 || level! == 3) {
+      return "1";
+    } else if (level == 2) {
+      return "½";
+    } else if (level == 1) {
+      return "¼";
     }
-    return "1";
+    return "FIM";
   };
   const frameClass = `${styles.frame}`;
 
