@@ -12,7 +12,7 @@ export default function Kitchen() {
   const token = localStorage.getItem("@TOKEN");
   !token && window.location.assign("http://localhost:3000/");
 
-  const { getMessages, rocketMsg, messages } = useUser();
+  const { getMessages, messages } = useUser();
 
   const [chatToggle, setToggleChat] = useState<boolean>(false);
   useEffect(() => {
@@ -26,14 +26,13 @@ export default function Kitchen() {
     setToggleChat(!chatToggle);
   };
 
-  const rocket = messages.filter((message) => message.rocket === true);
-  const rocketModal = rocketMsg && rocket[0].rocket && rocket[0].checked;
+const lastMsg = messages[messages.length-1]
 
   return (
     <>
       <Header text="Cozinha" />
-      {rocketModal && (
-        <NewMessagesModal messageId={rocket[0]!.id} text={rocket[0]!.text} />
+      {lastMsg && lastMsg.rocket && (
+        <NewMessagesModal messageId={lastMsg.id} text={lastMsg.text} />
       )}
       <DishContainer />;
       <ChatIcon className={styles.toggleChat} onClick={handleChat} />

@@ -3,26 +3,35 @@ import { useUser } from "@/contexts/userContext";
 import { INewMessage } from "@/interface";
 import { Input } from "../Input";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import styles from "./styles.module.scss";
 
 const ChatBox = () => {
-  const {
-    postMessages,
-    getMessages,
-    messages,
-    handleCheckbox,
-    rocketMsg
-  } = useUser();
+  const { postMessages, getMessages, messages, handleCheckbox, rocketMsg } =
+    useUser();
   const user = localStorage.getItem("@UserId");
+
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     getMessages();
-    const interval = setInterval(getMessages, 3000);
+    scrollToBottom();
+    const interval = setInterval(() => {
+      getMessages();
+      scrollToBottom();
+    }, 3000);
     return () => {
       clearInterval(interval);
     };
   }, []);
+
+  const saloon = window.location.pathname === "/saloon";
+
   const {
     register,
     handleSubmit,
@@ -51,6 +60,7 @@ const ChatBox = () => {
             </p>
           </li>
         ))}
+        <div ref={messagesEndRef} />
       </ul>
       <form className={styles.msgForm} onSubmit={handleSubmit(submit)}>
         <div>
@@ -61,16 +71,18 @@ const ChatBox = () => {
             defaultValue=""
             error={errors.text}
           />
-          <div>
-            <p>Torpedo</p>
-            <Input
-              type="checkbox"
-              label="Torpedo"
-              value={rocketMsg}
-              register={register("rocket")}
-              onChange={handleCheckbox}
-            />
-          </div>
+          {saloon && (
+            <div>
+              <p>Torpedo</p>
+              <Input
+                type="checkbox"
+                label=""
+                value={rocketMsg}
+                register={register("rocket")}
+                onChange={handleCheckbox}
+              />
+            </div>
+          )}
         </div>
         <button type="submit">
           <SendIcon />

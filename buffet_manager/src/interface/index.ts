@@ -47,6 +47,11 @@ export interface IMessagesModalProps {
   text: string;
 }
 
+export interface IupdateMsgProps {
+  checked: boolean;
+  rocket: boolean;
+}
+
 export interface IInputProps {
   label: string;
   type: "text" | "password" | "checkbox";
