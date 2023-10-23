@@ -2,11 +2,11 @@
 import ChatBox from "@/components/Chat/chatBox";
 import DishContainer from "@/components/DishContainer/DishContainer";
 import Header from "@/components/Header/header";
-import NewMessagesModal from "@/components/modal/chatModal/NewMessagesModal";
 import { useUser } from "@/contexts/userContext";
 import { useEffect, useState } from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 import styles from "./styles.module.scss";
+import NewMessagesModal from "@/components/modal/chatModal/NewMessagesModal";
 
 export default function Kitchen() {
   const token = localStorage.getItem("@TOKEN");
