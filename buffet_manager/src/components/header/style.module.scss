@@ -1,0 +1,38 @@
+.headerContainer {
+  display: flex;
+  margin-top: 5px;
+  width: 100vw;
+  height: fit-content;
+  padding: 0 10px;
+  justify-content: space-around;
+  border-bottom: 1px solid black;
+  position: fixed;
+  background-color: white;
+  a,
+  .endBtn {
+    font-size: 20px;
+    width: fit-content;
+    border-radius: 4px;
+    background-color: rgb(40, 253, 104);
+    font-weight: 600;
+    height: 35px;
+    padding: 4px;
+    color: #5c625a;
+  }
+  .btnContainer {
+    display: flex;
+    gap: 10px;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    font-size: 40px;
+    background-color: rgb(40, 253, 104);
+    border-radius: 6px;
+    font-weight: 700;
+    color: #5c625a;
+  }
+}

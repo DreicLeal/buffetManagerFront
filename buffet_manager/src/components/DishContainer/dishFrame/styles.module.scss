@@ -1,0 +1,89 @@
+.frameContainer {
+  display: flex;
+  border: 1px solid #5b5a62;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  width: 98%;
+}
+.frame {
+  display: flex;
+  background-color: #5b5a62;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px;
+  padding-bottom: 0;
+  width: 95vw;
+  height: 75px;
+  border-radius: 0 4px 4px 0;
+}
+.categoryContainer {
+  display: flex;
+}
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.replenishContainer {
+  display: flex;
+  align-items: center;
+}
+.chronoContainer > p {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .replenishBtn {
+    background-color: white;
+    margin: 2px;
+    border-radius: 4px;
+    height: 35px;
+    width: 35px;
+  }
+  .trending {
+    border-radius: 4px;
+    width: 35px;
+    height: 20px;
+  }
+}
+.white {
+  color: #ffffff;
+}
+.level0,
+.level1,
+.level2,
+.level3,
+.level4 {
+  transition: background-color 0.5s ease;
+  height: 100%;
+  width: 48px;
+  border-radius: 4px 0 0 4px;
+  padding: 4px;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.level0 {
+  background-color: rgb(255, 74, 74);
+}
+
+.level1 {
+  background-color: rgb(255, 123, 0);
+}
+
+.level2 {
+  background-color: rgb(254, 173, 0);
+}
+
+.level3 {
+  background-color: rgb(254, 223, 0);
+}
+
+.level4 {
+  background-color: rgb(40, 253, 104);
+}

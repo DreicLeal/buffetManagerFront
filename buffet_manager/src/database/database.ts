@@ -1,66 +1,159 @@
-import IBuffetDatabase from "@/interface";
+import { IBuffetDatabase } from "@/interface";
 
 const buffetFoodList: IBuffetDatabase[] = [
   {
-    type: "sopa",
+    category: "sopa",
     name: "Sopa do campo",
   },
   {
-    type: "sopa",
+    category: "sopa",
     name: "Sopa de abóbora",
   },
   {
-    type: "sopa",
+    category: "sopa",
     name: "Caldo verde",
   },
   {
-    type: "entrada",
+    category: "entrada",
     name: "canapé",
   },
   {
-    type: "salada",
+    category: "entrada",
+    name: "Batatas bravas",
+  },
+  {
+    category: "salada",
     name: "Mix de verdes",
   },
   {
-    type: "entrada",
+    category: "salada",
+    name: "Panzanella",
+  },
+  {
+    category: "entrada",
     name: "Focaccia",
   },
   {
-    type: "entrada",
+    category: "entrada",
     name: "Torrada",
   },
   {
-    type: "entrada",
+    category: "entrada",
     name: "Shot",
   },
   {
-    type: "entrada",
+    category: "entrada",
+    name: "Couve de bruxelas",
+  },
+  {
+    category: "entrada",
+    name: "Dip de couve-flor",
+  },
+  {
+    category: "entrada",
     name: "Patê",
   },
   {
-    type: "salada",
+    category: "entrada",
+    name: "Hummus",
+  },
+  {
+    category: "entrada",
+    name: "Babaganoush",
+  },
+  {
+    category: "entrada",
+    name: "Mohamara",
+  },
+  {
+    category: "entrada",
+    name: "Invertida de Cogumelo",
+  },
+  {
+    category: "entrada",
+    name: "Tigelinhas",
+  },
+  {
+    category: "entrada",
+    name: "Arroz selvagem",
+  },
+  {
+    category: "entrada",
+    name: "Arroz branco",
+  },
+  {
+    category: "entrada",
+    name: "Arroz integral",
+  },
+  {
+    category: "entrada",
+    name: "Tatin",
+  },
+  {
+    category: "entrada",
+    name: "Quesadillas",
+  },
+  {
+    category: "entrada",
+    name: "Quinoa",
+  },
+  {
+    category: "entrada",
+    name: "Couscuz",
+  },
+  {
+    category: "salada",
     name: "Waldorf",
   },
   {
-    type: "salada",
+    category: "salada",
+    name: "Detox",
+  },
+  {
+    category: "salada",
     name: "Coleslaw",
   },
   {
-    type: "quente",
+    category: "quente",
     name: "Tofu",
   },
   {
-    type: "quente",
+    category: "quente",
+    name: "Chilli de seitan",
+  },
+  {
+    category: "quente",
     name: "Seitan",
   },
   {
-    type: "quente",
+    category: "quente",
     name: "Beringela napolitana",
   },
   {
-    type: "quente",
+    category: "quente",
     name: "Feijão preto",
+  },
+  {
+    category: "quente",
+    name: "Burguer de feijão preto",
+  },
+  {
+    category: "quente",
+    name: "Caril de tofu",
+  },
+  {
+    category: "quente",
+    name: "Caril de grão de bico",
   },
 ];
 
-export default buffetFoodList
+const preSetMessagesList = [
+  "Manda um copo com gelo, por favor.",
+  "Preciso de bowls de sopa, por favor.",
+  "Preciso das tigelas de inox, por favor.",
+  "Preciso de pratos",
+  "Sumo da mesa:",
+  "Preciso de talheres, por favor.",
+]
+
+export {buffetFoodList, preSetMessagesList};
