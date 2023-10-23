@@ -18,8 +18,10 @@ export default function Saloon() {
     <>
       <Header text="Sala" />
       <DishContainer />;
-      <ChatIcon className={styles.toggleChat} onClick={handleChat} />
-      {chatToggle && <ChatBox />}
+      <div className={styles.chatContainer}>
+        <ChatIcon onClick={handleChat} />
+        {chatToggle && <ChatBox />}
+      </div>
     </>
   );
 }
