@@ -14,6 +14,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   const { token, setEndModal } = useUser();
   const [dishes, setDishes] = useState<IBuffetDatabase[]>([]);
   const [modal, setModal] = useState<boolean>(false);
+  const [load , setLoad] = useState<boolean>(false)
 
   const addFood = async (dishData: IBuffetDatabase) => {
     try {
@@ -60,6 +61,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
 
     const newInfo = { level: level, timer: chrono };
     try {
+      setLoad(true)
       const dishUpdateResponse = await buffetManagerApi.patch(
         `/dishes/${dishId[0].id}`,
         newInfo
@@ -70,6 +72,8 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       setDishes([...updated, ...dishUpdateResponse.data.id]);
     } catch (error) {
       console.log(error);
+    } finally{
+      setLoad(false)
     }
   };
 
@@ -80,6 +84,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   return (
     <FoodContext.Provider
       value={{
+        load,
         dishes,
         handleModal,
         modal,

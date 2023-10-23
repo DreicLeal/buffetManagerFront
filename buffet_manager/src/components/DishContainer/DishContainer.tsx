@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { buffetManagerApi } from "@/requests/api";
 
 export default function DishContainer() {
-  const { dishes, setDishes } = useFood();
+  const { dishes, setDishes, load } = useFood();
   useEffect(() => {
     const getDishes = async () => {
       try {
@@ -26,16 +26,20 @@ export default function DishContainer() {
   return (
     <div className={styles.dishContainer}>
       {dishes.length > 0 ? (
-        dishes.map((dish, i) => (
-          <DishFrame
-            key={i}
-            name={dish.name}
-            category={dish.category}
-            extra={dish.extra}
-            level={dish.level}
-            timer={dish.timer}
-          />
-        ))
+        !load ? (
+          dishes.map((dish, i) => (
+            <DishFrame
+              key={i}
+              name={dish.name}
+              category={dish.category}
+              extra={dish.extra}
+              level={dish.level}
+              timer={dish.timer}
+            />
+          ))
+        ) : (
+          <div>carregando...</div>
+        )
       ) : (
         <h1>Adicione um prato</h1>
       )}
