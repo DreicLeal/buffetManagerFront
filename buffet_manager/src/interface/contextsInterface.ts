@@ -3,6 +3,7 @@ import {
   IBuffetDatabase,
   IMessage,
   INewMessage,
+  IUpdateDish,
   IloginInput,
   IupdateMsgProps,
 } from ".";
@@ -36,6 +37,6 @@ export interface FoodProviderData {
   modal: boolean;
   addFood: (dishData: IBuffetDatabase) => Promise<void>;
   setDishes: Dispatch<SetStateAction<IBuffetDatabase[]>>;
-  updateDishes: (name: string, toUpdateData: number) => Promise<void>;
+  updateDishes: ({ name, timer }: IUpdateDish) => Promise<void>
   deleteAllFood: () => Promise<void>;
 }

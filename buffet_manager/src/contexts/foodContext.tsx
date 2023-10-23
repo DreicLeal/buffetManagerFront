@@ -1,5 +1,5 @@
 "use client";
-import { IBuffetDatabase } from "@/interface";
+import { IBuffetDatabase, IUpdateDish } from "@/interface";
 import { buffetManagerApi } from "@/requests/api";
 import { createContext, useContext, useState } from "react";
 import { useUser } from "./userContext";
@@ -31,7 +31,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       await buffetManagerApi.delete("/dishes", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setDishes([])
+      setDishes([]);
       setEndModal(false);
     } catch (error) {
       console.log(error);
@@ -47,13 +47,22 @@ export const FoodProvider = ({ children }: IProviderProps) => {
     }
   };
 
-  const updateDishes = async (name: string, nLevel: number) => {
+  const updateDishes = async ({ name, level }: IUpdateDish) => {
     const dishId = dishes.filter((dish) => dish.name === name);
-    const newLevel = { level: nLevel };
+    let chrono;
+    if (level! < 3 && dishId[0].timer == null) {
+      chrono = new Date();
+    }
+
+    if (level == 4) {
+      chrono = null;
+    }
+
+    const newInfo = { level: level, timer: chrono };
     try {
       const dishUpdateResponse = await buffetManagerApi.patch(
         `/dishes/${dishId[0].id}`,
-        newLevel
+        newInfo
       );
       const updated = dishes.filter(
         (dish) => dish.id !== dishUpdateResponse.data.id
