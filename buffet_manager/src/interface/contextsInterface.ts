@@ -39,4 +39,5 @@ export interface FoodProviderData {
   setDishes: Dispatch<SetStateAction<IBuffetDatabase[]>>;
   updateDishes: ({ name, timer }: IUpdateDish) => Promise<void>
   deleteAllFood: () => Promise<void>;
+  load: boolean
 }
