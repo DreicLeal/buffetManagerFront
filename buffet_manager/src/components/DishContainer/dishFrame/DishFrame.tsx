@@ -3,7 +3,6 @@ import { IBuffetDatabase } from "@/interface";
 import styles from "./styles.module.scss";
 import { useFood } from "@/contexts/foodContext";
 import { Timer } from "@/components/chrono/Chrono";
-import { useEffect } from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
 
 export default function DishFrame({
@@ -11,27 +10,19 @@ export default function DishFrame({
   category,
   extra,
   level,
-}: IBuffetDatabase & { initialTime: number }) {
+  timer,
+}: IBuffetDatabase) {
   const { updateDishes } = useFood();
   const location = window.location.pathname === "/saloon";
-  useEffect(() => {
-    if (level! < 3 && !localStorage.getItem(`initialTime_${name}`)) {
-      localStorage.setItem(`initialTime_${name}`, Date.now().toString());
-    }
-  }, [name, level]);
-
-  const initialTime = parseInt(
-    localStorage.getItem(`initialTime_${name}`) || "0",
-    10
-  );
 
   const handleRangeChange = (event: any) => {
     const newLevel = parseInt(event.target.value) - 1;
-    updateDishes(name, newLevel);
+    const newInfo = {level:newLevel, name:name}
+    updateDishes(newInfo);
   };
   const replenish = () => {
-    updateDishes(name, 4);
-    localStorage.removeItem(`initialTime_${name}`);
+    const replenishInfo = {name:name, level: 4};
+    updateDishes(replenishInfo);
   };
   const fraction = () => {
     if (level! == 4 || level! == 3) {
@@ -59,7 +50,7 @@ export default function DishFrame({
           </div>
           <div className={styles.replenishContainer}>
             <div className={styles.chronoContainer}>
-              {level! < 3 && <Timer initialTime={initialTime} />}
+              {level! < 3 && <Timer initialTime={timer!} />}
             </div>
             {location && (
               <div className={styles.buttonContainer}>

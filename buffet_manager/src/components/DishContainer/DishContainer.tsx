@@ -33,7 +33,7 @@ export default function DishContainer() {
             category={dish.category}
             extra={dish.extra}
             level={dish.level}
-            initialTime={0}
+            timer={dish.timer}
           />
         ))
       ) : (

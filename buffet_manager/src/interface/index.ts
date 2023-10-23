@@ -5,9 +5,17 @@ export interface IBuffetDatabase {
   name: string;
   category: string;
   extra?: boolean;
-  level?: number;
+  level: number;
+  timer: number | null;
   created_at?: string;
   updated_at?: string;
+}
+export interface IUpdateDish {
+  id?: string;
+  name: string;
+  extra?: boolean;
+  level?: number;
+  timer?: number | null;
 }
 
 export interface IloginInput {

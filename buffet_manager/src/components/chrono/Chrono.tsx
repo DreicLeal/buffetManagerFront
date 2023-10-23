@@ -4,15 +4,15 @@ interface TimerProps {
   initialTime: number;
 }
 export function Timer({ initialTime }: TimerProps) {
-  const [elapsedTime, setElapsedTime] = useState(Date.now() - initialTime);
-
+  const initialTimeInMs = new Date(initialTime).getTime();
+  const [elapsedTime, setElapsedTime] = useState(Date.now() - initialTimeInMs);
   useEffect(() => {
     const timerInterval = setInterval(() => {
-      setElapsedTime(Date.now() - initialTime);
+      setElapsedTime(Date.now() - initialTimeInMs);
     }, 1000);
 
     return () => clearInterval(timerInterval);
-  }, [initialTime]);
+  }, [initialTimeInMs]);
 
   const formatTime = (time: number) => String(time).padStart(2, "0");
 
