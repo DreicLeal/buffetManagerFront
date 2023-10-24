@@ -9,13 +9,14 @@ import styles from "./styles.module.scss";
 import RocketMessagesModal from "@/components/modal/chatModal/RocketMsgModal";
 
 export default function Kitchen() {
-  const token = localStorage.getItem("@TOKEN");
-  !token && window.location.assign("http://localhost:3000/");
-
   const { getMessages, messages } = useUser();
-
   const [chatToggle, setToggleChat] = useState<boolean>(false);
+
   useEffect(() => {
+    const token = localStorage.getItem("@TOKEN");
+    if (!token) {
+      window.location.assign("http://localhost:3000/");
+    }
     getMessages();
     const interval = setInterval(getMessages, 3000);
     return () => {
@@ -26,7 +27,7 @@ export default function Kitchen() {
     setToggleChat(!chatToggle);
   };
 
-const lastMsg = messages[messages.length-1]
+  const lastMsg = messages[messages.length - 1];
 
   return (
     <>
