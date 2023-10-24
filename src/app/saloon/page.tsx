@@ -16,7 +16,7 @@ export default function Saloon() {
 
   useEffect(() => {
     if (!token) {
-      window.location.assign("http://localhost:3000/");
+      window.location.assign("https://buffetmanagerapi007.onrender.com/");
     }
   }, []);
   return (

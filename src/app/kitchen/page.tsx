@@ -15,7 +15,7 @@ export default function Kitchen() {
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     if (!token) {
-      window.location.assign("http://localhost:3000/");
+      window.location.assign("https://buffetmanagerapi007.onrender.com/");
     }
     getMessages();
     const interval = setInterval(getMessages, 3000);

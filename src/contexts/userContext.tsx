@@ -45,7 +45,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
       const { dishes, messages, ...rest } = res.data;
       setUser(rest.id);
       localStorage.setItem("@UserId", rest.id);
-      window.location.replace("http://localhost:3000/lobby");
+      window.location.replace("https://buffetmanagerapi007.onrender.com/lobby");
     } catch (error) {
       console.log(error);
     }
