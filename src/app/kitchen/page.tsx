@@ -15,7 +15,7 @@ export default function Kitchen() {
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     if (!token) {
-      window.location.assign("https://buffetmanagerapi007.onrender.com/");
+      window.location.assign("https://buffet-manager-front-27d6-ksl8msesa-dreicleal.vercel.app/");
     }
     getMessages();
     const interval = setInterval(getMessages, 3000);
