@@ -15,7 +15,7 @@ export default function Home() {
       setLocation("Cozinha")
     }
     if (token && user) {
-      window.location.assign("http://localhost:3000/lobby");
+      window.location.assign("https://buffetmanagerapi007.onrender.com/lobby");
     }
   }, []);
 
