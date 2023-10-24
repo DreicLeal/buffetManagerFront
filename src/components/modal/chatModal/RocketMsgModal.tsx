@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 
 import { useUser } from "@/contexts/userContext";
 
-const NewMessagesModal = ({ messageId, text }: IMessagesModalProps) => {
+const RocketMessagesModal = ({ messageId, text }: IMessagesModalProps) => {
   const { updateMessages } = useUser();
 
   const handleModal = (id: string) => {
@@ -21,4 +21,4 @@ const NewMessagesModal = ({ messageId, text }: IMessagesModalProps) => {
     </div>
   );
 };
-export default NewMessagesModal;
+export default RocketMessagesModal;
