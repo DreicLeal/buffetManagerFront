@@ -5,8 +5,8 @@ export interface IBuffetDatabase {
   name: string;
   category: string;
   extra?: boolean;
-  level: number;
-  timer: number | null;
+  level?: number;
+  timer?: number | null;
   created_at?: string;
   updated_at?: string;
 }
