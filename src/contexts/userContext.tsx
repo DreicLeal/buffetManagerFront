@@ -45,7 +45,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
       const { dishes, messages, ...rest } = res.data;
       setUser(rest.id);
       localStorage.setItem("@UserId", rest.id);
-      window.location.replace("https://buffetmanagerapi007.onrender.com/lobby");
+      window.location.replace("https://buffet-manager-front-27d6-ksl8msesa-dreicleal.vercel.app/lobby");
     } catch (error) {
       console.log(error);
     }

@@ -15,7 +15,7 @@ export default function Home() {
       setLocation("Cozinha")
     }
     if (token && user) {
-      window.location.assign("https://buffetmanagerapi007.onrender.com/lobby");
+      window.location.assign("https://buffet-manager-front-27d6-ksl8msesa-dreicleal.vercel.app/lobby");
     }
   }, []);
 
