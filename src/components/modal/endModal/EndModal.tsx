@@ -3,6 +3,7 @@ import { useFood } from "@/contexts/foodContext";
 import { useUser } from "@/contexts/userContext";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./styles.module.scss";
+import { baseURL } from "@/database/database";
 
 const EndModal = () => {
   const { setEndModal, deleteAllMessages } = useUser();
@@ -14,7 +15,7 @@ const EndModal = () => {
     localStorage.removeItem("@UserId")
     localStorage.clear()
     setTimeout(()=> {
-      window.location.replace("https://buffet-manager-front-27d6-oi9axqjh9-dreicleal.vercel.app/")
+      window.location.replace(baseURL)
     },500)
 
   };

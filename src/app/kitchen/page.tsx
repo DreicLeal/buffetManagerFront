@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 import styles from "./styles.module.scss";
 import RocketMessagesModal from "@/components/modal/chatModal/RocketMsgModal";
+import { baseURL } from "@/database/database";
 
 export default function Kitchen() {
   const { getMessages, messages } = useUser();
@@ -15,7 +16,7 @@ export default function Kitchen() {
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     if (!token) {
-      window.location.assign("https://buffet-manager-front-27d6-oi9axqjh9-dreicleal.vercel.app/");
+      window.location.assign(baseURL);
     }
     getMessages();
     const interval = setInterval(getMessages, 3000);

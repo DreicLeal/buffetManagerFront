@@ -6,6 +6,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { useUser } from "@/contexts/userContext";
+import { baseURL } from "@/database/database";
 
 export default function Saloon() {
   const { token } = useUser();
@@ -16,7 +17,7 @@ export default function Saloon() {
 
   useEffect(() => {
     if (!token) {
-      window.location.assign("https://buffet-manager-front-27d6-oi9axqjh9-dreicleal.vercel.app/");
+      window.location.assign(baseURL);
     }
   }, []);
   return (
