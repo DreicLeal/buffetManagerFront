@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import Header from "@/components/Header/header";
 import { LoginForm } from "@/components/login/loginForm";
 import { useUser } from "@/contexts/userContext";
+import { baseURL } from "@/database/database";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
       setLocation("Cozinha")
     }
     if (token && user) {
-      window.location.assign("https://buffet-manager-front-27d6-ksl8msesa-dreicleal.vercel.app/lobby");
+      window.location.assign(`${baseURL}/lobby`);
     }
   }, []);
 
