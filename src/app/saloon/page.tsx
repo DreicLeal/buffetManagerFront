@@ -16,7 +16,7 @@ export default function Saloon() {
 
   useEffect(() => {
     if (!token) {
-      window.location.assign("https://buffet-manager-front-27d6-ksl8msesa-dreicleal.vercel.app/");
+      window.location.assign("https://buffet-manager-front-27d6-oi9axqjh9-dreicleal.vercel.app/");
     }
   }, []);
   return (

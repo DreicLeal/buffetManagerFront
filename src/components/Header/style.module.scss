@@ -1,3 +1,4 @@
+@use "./../../scss/abstracts/" as *;
 .headerContainer {
   display: flex;
   margin-top: 5px;
@@ -5,19 +6,19 @@
   height: fit-content;
   padding: 0 10px;
   justify-content: space-around;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $color-black-1;
   position: fixed;
-  background-color: white;
+  background-color: $color-white;
   a,
   .endBtn {
     font-size: 20px;
     width: fit-content;
     border-radius: 4px;
-    background-color: rgb(40, 253, 104);
+    background-color: $color-green-1;
     font-weight: 600;
     height: 35px;
     padding: 4px;
-    color: #5c625a;
+    color: $color-grey-1;
   }
   .btnContainer {
     display: flex;
@@ -30,9 +31,9 @@
     width: 35px;
     height: 35px;
     font-size: 40px;
-    background-color: rgb(40, 253, 104);
-    border-radius: 6px;
+    background-color: $color-green-1;
+    border-radius: 4px;
     font-weight: 700;
-    color: #5c625a;
+    color: $color-grey-1;
   }
 }

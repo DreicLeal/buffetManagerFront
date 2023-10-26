@@ -14,7 +14,7 @@ const EndModal = () => {
     localStorage.removeItem("@UserId")
     localStorage.clear()
     setTimeout(()=> {
-      window.location.replace("https://buffet-manager-front-27d6-ksl8msesa-dreicleal.vercel.app/")
+      window.location.replace("https://buffet-manager-front-27d6-oi9axqjh9-dreicleal.vercel.app/")
     },500)
 
   };

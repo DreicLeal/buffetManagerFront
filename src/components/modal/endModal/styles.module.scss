@@ -1,5 +1,6 @@
+@use "./../../../scss/abstracts/" as *;
 .modalOverlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: $color-black-2;
   position: fixed;
   top: 0;
   right: 0;
@@ -42,8 +43,8 @@
     min-height: 165px;
     min-width: 190px;
     padding: 5px;
-    background-color: rgb(40, 253, 104);
-    color: #5c625a;
+    background-color: $color-green-1;
+    color: $color-grey-1;
     font-size: 40px;
     font-weight: 700;
   }
