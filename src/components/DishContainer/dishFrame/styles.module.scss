@@ -1,13 +1,14 @@
+@use "./../../../scss/abstracts/" as *;
 .frameContainer {
   display: flex;
-  border: 1px solid #5b5a62;
+  border: 1px solid $color-grey-1;
   border-radius: 4px;
   margin-bottom: 2px;
   width: 98%;
 }
 .frame {
   display: flex;
-  background-color: #5b5a62;
+  background-color: $color-grey-1;
   flex-direction: column;
   justify-content: space-between;
   padding: 4px;
@@ -28,7 +29,7 @@
   align-items: center;
 }
 .chronoContainer > p {
-  color: #ffffff;
+  color: $color-white;
   font-size: 32px;
   font-weight: 700;
 }
@@ -37,7 +38,7 @@
   flex-direction: column;
   align-items: center;
   .replenishBtn {
-    background-color: white;
+    background-color: $color-white;
     margin: 2px;
     border-radius: 4px;
     height: 35px;
@@ -50,7 +51,7 @@
   }
 }
 .white {
-  color: #ffffff;
+  color: $color-white;
 }
 .level0,
 .level1,
@@ -85,5 +86,5 @@
 }
 
 .level4 {
-  background-color: rgb(40, 253, 104);
+  background-color: $color-green-1;
 }
