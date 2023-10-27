@@ -1,8 +1,8 @@
 "use client";
-import { useFood } from "@/contexts/foodContext";
-import { useUser } from "@/contexts/userContext";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./styles.module.scss";
+import { useUser } from "@/contexts/userContext";
+import { useFood } from "@/contexts/foodContext";
 import { baseURL } from "@/database/database";
 
 const EndModal = () => {
@@ -11,13 +11,12 @@ const EndModal = () => {
   const logout = () => {
     deleteAllFood();
     deleteAllMessages();
-    localStorage.removeItem("@TOKEN")
-    localStorage.removeItem("@UserId")
-    localStorage.clear()
-    setTimeout(()=> {
-      window.location.replace(baseURL)
-    },500)
-
+    localStorage.removeItem("@TOKEN");
+    localStorage.removeItem("@UserId");
+    localStorage.clear();
+    setTimeout(() => {
+      window.location.replace(baseURL);
+    }, 500);
   };
   return (
     <div className={styles.modalOverlay}>

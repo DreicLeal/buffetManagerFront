@@ -1,20 +1,6 @@
 @use "./../../../scss/abstracts/" as *;
 .modalOverlay {
-  background-color: $color-black-2;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100vw;
-  height: 100vh;
-
+  @include modal-overlay;
   .container {
     display: flex;
     flex-direction: column;
@@ -33,7 +19,7 @@
         height: 30px;
       }
     }
-    .extraDish{
+    .extraDish {
       display: flex;
       font-weight: 500;
       font-size: 14px;

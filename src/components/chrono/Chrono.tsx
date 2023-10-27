@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 interface TimerProps {
   initialTime: number;
 }
-export function Timer({ initialTime }: TimerProps) {
+const Timer = ({ initialTime }: TimerProps) => {
   const initialTimeInMs = new Date(initialTime).getTime();
   const [elapsedTime, setElapsedTime] = useState(Date.now() - initialTimeInMs);
   useEffect(() => {
@@ -25,4 +25,6 @@ export function Timer({ initialTime }: TimerProps) {
       {formatTime(minutes)}:{formatTime(seconds)}
     </p>
   );
-}
+};
+
+export default Timer;

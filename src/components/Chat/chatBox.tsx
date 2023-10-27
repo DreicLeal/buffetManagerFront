@@ -1,11 +1,11 @@
 "use client";
-import { useUser } from "@/contexts/userContext";
-import { INewMessage } from "@/interface";
-import { Input } from "../Input";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useEffect, useRef } from "react";
+import Input from "../Input";
 import SendIcon from "@mui/icons-material/Send";
 import styles from "./styles.module.scss";
+import { useUser } from "@/contexts/userContext";
+import { INewMessage } from "@/interface";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useEffect, useRef } from "react";
 
 const ChatBox = () => {
   const { postMessages, getMessages, messages, handleCheckbox, rocketMsg } =

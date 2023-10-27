@@ -1,27 +1,27 @@
 "use client";
-import { IBuffetDatabase } from "@/interface";
 import styles from "./styles.module.scss";
-import { useFood } from "@/contexts/foodContext";
-import { Timer } from "@/components/chrono/Chrono";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import Timer from "@/components/chrono/Chrono";
+import { useFood } from "@/contexts/foodContext";
+import { IBuffetDatabase } from "@/interface";
 
-export default function DishFrame({
+const DishFrame = ({
   name,
   category,
   extra,
   level,
   timer,
-}: IBuffetDatabase) {
+}: IBuffetDatabase) => {
   const { updateDishes } = useFood();
   const location = window.location.pathname === "/saloon";
 
   const handleRangeChange = (event: any) => {
     const newLevel = parseInt(event.target.value) - 1;
-    const newInfo = {level:newLevel, name:name}
+    const newInfo = { level: newLevel, name: name };
     updateDishes(newInfo);
   };
   const replenish = () => {
-    const replenishInfo = {name:name, level: 4};
+    const replenishInfo = { name: name, level: 4 };
     updateDishes(replenishInfo);
   };
   const fraction = () => {
@@ -72,4 +72,5 @@ export default function DishFrame({
       </div>
     </div>
   );
-}
+};
+export default DishFrame;

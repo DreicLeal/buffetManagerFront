@@ -1,11 +1,11 @@
 "use client";
-import { useFood } from "@/contexts/foodContext";
 import DishFrame from "./dishFrame/DishFrame";
 import styles from "./styles.module.scss";
+import { useFood } from "@/contexts/foodContext";
 import { useEffect } from "react";
 import { buffetManagerApi } from "@/requests/api";
 
-export default function DishContainer() {
+const DishContainer = () => {
   const { dishes, setDishes, load } = useFood();
   useEffect(() => {
     const getDishes = async () => {
@@ -45,4 +45,5 @@ export default function DishContainer() {
       )}
     </div>
   );
-}
+};
+export default DishContainer;

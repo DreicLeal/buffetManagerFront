@@ -1,7 +1,6 @@
 "use client";
-import { IMessagesModalProps } from "@/interface";
 import styles from "./styles.module.scss";
-
+import { IMessagesModalProps } from "@/interface";
 import { useUser } from "@/contexts/userContext";
 
 const RocketMessagesModal = ({ messageId, text }: IMessagesModalProps) => {

@@ -2,9 +2,9 @@
 import Link from "next/link";
 import AddFoodModal from "../modal/addDishes/AddDishesModal";
 import styles from "./style.module.scss";
-import { useFood } from "@/contexts/foodContext";
 import EndModal from "../modal/endModal/EndModal";
 import { useUser } from "@/contexts/userContext";
+import { useFood } from "@/contexts/foodContext";
 
 const Header = ({ text }: { text: string }) => {
   const { endModal, setEndModal, token } = useUser();
