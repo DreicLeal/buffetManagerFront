@@ -40,8 +40,7 @@ const ChatBox = () => {
   const submit: SubmitHandler<INewMessage> = (messageContent) => {
     postMessages(messageContent);
   };
-console.log(messages)
-console.log(user)
+
   return (
     <div className={styles.chatContainer}>
       <ul className={styles.messagesContainer}>
