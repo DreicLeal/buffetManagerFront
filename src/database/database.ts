@@ -1,7 +1,7 @@
 import { IBuffetDatabase } from "@/interface";
 
+const baseURL = "https://buffet-manager-front-27d6-2jxyw1gtv-dreicleal.vercel.app";
 
-const baseURL = "https://buffet-manager-front-27d6-4jewybe7r-dreicleal.vercel.app";
 const buffetFoodList: IBuffetDatabase[] = [
   {
     category: "sopa",
@@ -156,6 +156,6 @@ const preSetMessagesList = [
   "Preciso de pratos",
   "Sumo da mesa:",
   "Preciso de talheres, por favor.",
-]
+];
 
-export {buffetFoodList, preSetMessagesList, baseURL};
+export { buffetFoodList, preSetMessagesList, baseURL };
