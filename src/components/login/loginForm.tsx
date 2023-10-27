@@ -1,11 +1,11 @@
 "use client";
+import Input from "../Input";
+import styles from "./styles.module.scss";
 import { IloginInput } from "@/interface";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "../Input";
 import { useUser } from "@/contexts/userContext";
-import styles from "./styles.module.scss";
 
-export const LoginForm = () => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -39,3 +39,4 @@ export const LoginForm = () => {
     </form>
   );
 };
+export default LoginForm;

@@ -1,15 +1,15 @@
 "use client";
+import styles from "./../styles.module.scss"
 import ChatBox from "@/components/Chat/chatBox";
 import DishContainer from "@/components/DishContainer/DishContainer";
 import Header from "@/components/Header/header";
+import ChatIcon from "@mui/icons-material/Chat";
+import RocketMessagesModal from "@/components/modal/chatModal/RocketMsgModal";
 import { useUser } from "@/contexts/userContext";
 import { useEffect, useState } from "react";
-import ChatIcon from "@mui/icons-material/Chat";
-import styles from "./styles.module.scss";
-import RocketMessagesModal from "@/components/modal/chatModal/RocketMsgModal";
 import { baseURL } from "@/database/database";
 
-export default function Kitchen() {
+const Kitchen = () => {
   const { getMessages, messages } = useUser();
   const [chatToggle, setToggleChat] = useState<boolean>(false);
 
@@ -41,4 +41,5 @@ export default function Kitchen() {
       {chatToggle && <ChatBox />}
     </>
   );
-}
+};
+export default Kitchen;

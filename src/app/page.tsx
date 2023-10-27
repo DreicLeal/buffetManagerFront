@@ -1,7 +1,7 @@
 "use client";
 import styles from "./page.module.css";
 import Header from "@/components/Header/header";
-import { LoginForm } from "@/components/login/loginForm";
+import LoginForm  from "@/components/login/loginForm";
 import { useUser } from "@/contexts/userContext";
 import { baseURL } from "@/database/database";
 import { useEffect, useState } from "react";

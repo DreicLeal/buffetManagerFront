@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
 import styles from "./styles.module.scss";
+import CloseIcon from "@mui/icons-material/Close";
+import { useState } from "react";
 import { useFood } from "@/contexts/foodContext";
 import { buffetFoodList } from "@/database/database";
-import CloseIcon from "@mui/icons-material/Close";
 
 const AddFoodModal = () => {
   const { handleModal, addFood } = useFood();

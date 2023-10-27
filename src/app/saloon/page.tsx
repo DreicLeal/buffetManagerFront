@@ -3,12 +3,12 @@ import ChatBox from "@/components/Chat/chatBox";
 import DishContainer from "@/components/DishContainer/DishContainer";
 import Header from "@/components/Header/header";
 import ChatIcon from "@mui/icons-material/Chat";
+import styles from "./../styles.module.scss";
 import { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
 import { useUser } from "@/contexts/userContext";
 import { baseURL } from "@/database/database";
 
-export default function Saloon() {
+const Saloon = () => {
   const { token } = useUser();
   const [chatToggle, setToggleChat] = useState<boolean>(false);
   const handleChat = () => {
@@ -24,10 +24,9 @@ export default function Saloon() {
     <>
       <Header text="Sala" />
       <DishContainer />;
-      <div className={styles.chatContainer}>
-        <ChatIcon onClick={handleChat} />
-        {chatToggle && <ChatBox />}
-      </div>
+      <ChatIcon className={styles.toggleChat} onClick={handleChat} />
+      {chatToggle && <ChatBox />}
     </>
   );
-}
+};
+export default Saloon;
