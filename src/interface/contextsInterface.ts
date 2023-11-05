@@ -40,4 +40,6 @@ export interface FoodProviderData {
   updateDishes: ({ name, timer }: IUpdateDish) => Promise<void>
   deleteAllFood: () => Promise<void>;
   load: boolean
+  setLoad: Dispatch<SetStateAction<boolean>>
+  deleteFood: (dishId: string) => Promise<void>
 }

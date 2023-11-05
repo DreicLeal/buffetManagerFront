@@ -6,12 +6,12 @@ import { useEffect } from "react";
 import { buffetManagerApi } from "@/requests/api";
 
 const DishContainer = () => {
-  const { dishes, setDishes, load } = useFood();
+  const { dishes, setDishes, load, setLoad } = useFood();
   useEffect(() => {
     const getDishes = async () => {
       try {
-        const dishes = await buffetManagerApi.get("/dishes");
-        setDishes(dishes.data);
+        const dishesResponse = await buffetManagerApi.get("/dishes");
+        setDishes(dishesResponse.data);
       } catch (error) {
         console.log(error);
       }
@@ -35,6 +35,7 @@ const DishContainer = () => {
               extra={dish.extra}
               level={dish.level}
               timer={dish.timer}
+              id={dish.id}
             />
           ))
         ) : (

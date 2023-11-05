@@ -22,7 +22,6 @@ export const FoodProvider = ({ children }: IProviderProps) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setModal(!modal);
-      getDishes();
     } catch (error) {
       console.log(error);
     }
@@ -39,14 +38,18 @@ export const FoodProvider = ({ children }: IProviderProps) => {
     }
   };
 
-  const getDishes = async () => {
+  const deleteFood = async (dishId:string) => {
+    console.log("delete click")
     try {
-      const dishes = await buffetManagerApi.get("/dishes");
-      setDishes(dishes.data);
+      await buffetManagerApi.delete(`/dishes/${dishId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      // setDishes([]);
+      // setEndModal(false);
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   const updateDishes = async ({ name, level }: IUpdateDish) => {
     const dishId = dishes.filter((dish) => dish.name === name);
@@ -84,6 +87,8 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   return (
     <FoodContext.Provider
       value={{
+        deleteFood,
+        setLoad,
         load,
         dishes,
         handleModal,
