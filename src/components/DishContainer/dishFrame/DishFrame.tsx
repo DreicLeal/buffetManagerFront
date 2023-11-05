@@ -49,7 +49,6 @@ const DishFrame = ({
   };
 
   const deleteDish = () => {
-    console.log("delete", id);
     deleteFood(id!);
     const remainDishes = dishes.filter((dish) => dish.id !== id);
     setDishes(remainDishes);

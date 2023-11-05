@@ -38,23 +38,20 @@ export const FoodProvider = ({ children }: IProviderProps) => {
     }
   };
 
-  const deleteFood = async (dishId:string) => {
-    console.log("delete click")
+  const deleteFood = async (dishId: string) => {
     try {
       await buffetManagerApi.delete(`/dishes/${dishId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      // setDishes([]);
-      // setEndModal(false);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const updateDishes = async ({ name, level }: IUpdateDish) => {
-    const dishId = dishes.filter((dish) => dish.name === name);
+    const dishId = dishes.find((dish) => dish.name === name);
     let chrono;
-    if (level! < 3 && dishId[0].timer == null) {
+    if (level! < 3 && dishId!.timer == null) {
       chrono = new Date();
     }
 
@@ -66,7 +63,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
     try {
       setLoad(true);
       const dishUpdateResponse = await buffetManagerApi.patch(
-        `/dishes/${dishId[0].id}`,
+        `/dishes/${dishId!.id}`,
         newInfo
       );
       const updated = dishes.filter(
