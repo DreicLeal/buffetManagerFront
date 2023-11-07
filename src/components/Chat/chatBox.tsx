@@ -21,13 +21,6 @@ const ChatBox = () => {
   useEffect(() => {
     getMessages();
     scrollToBottom();
-    const interval = setInterval(() => {
-      getMessages();
-      scrollToBottom();
-    }, 3000);
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
 
   const saloon = window.location.pathname === "/saloon";
@@ -39,6 +32,13 @@ const ChatBox = () => {
   } = useForm<INewMessage>();
   const submit: SubmitHandler<INewMessage> = (messageContent) => {
     postMessages(messageContent);
+    const interval = setInterval(() => {
+      getMessages();
+      scrollToBottom();
+    }, 3000);
+    return () => {
+      clearInterval(interval);
+    };
   };
 
   return (
