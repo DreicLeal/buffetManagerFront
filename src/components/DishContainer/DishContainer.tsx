@@ -4,9 +4,11 @@ import styles from "./styles.module.scss";
 import { useFood } from "@/contexts/foodContext";
 import { useEffect } from "react";
 import { buffetManagerApi } from "@/requests/api";
+import EditDishModal from "../modal/editDishesModal/EditDishModal";
 
 const DishContainer = () => {
-  const { dishes, setDishes, load, setLoad } = useFood();
+  const { dishes, setDishes, load, editModal, setDishToEditId, dishToEditId } =
+    useFood();
   useEffect(() => {
     const getDishes = async () => {
       try {
@@ -23,8 +25,16 @@ const DishContainer = () => {
     };
   }, []);
 
+  const eventSeeker = (e: any) => {
+    const isEditBtn = e.target.innerHTML === "Editar";
+    if (isEditBtn) {
+      setDishToEditId(e.target.id);
+    }
+  };
+
   return (
-    <div className={styles.dishContainer}>
+    <div className={styles.dishContainer} onClick={(e) => eventSeeker(e)}>
+      {editModal && <EditDishModal />}
       {dishes.length > 0 ? (
         !load ? (
           dishes.map((dish, i) => (

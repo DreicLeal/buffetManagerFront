@@ -12,7 +12,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<IloginInput>();
   const { login } = useUser();
-
+  
   const submit: SubmitHandler<IloginInput> = (formData) => {
     formData.name = formData.name.toLowerCase()
     login(formData);

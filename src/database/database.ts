@@ -1,6 +1,7 @@
 import { IBuffetDatabase } from "@/interface";
 
-const baseURL = "https://buffet-manager-front-27d6.vercel.app";
+// const baseURL = "https://buffet-manager-front-27d6.vercel.app";
+const baseURL = "http://localhost:3000";
 
 const buffetFoodList: IBuffetDatabase[] = [
   {

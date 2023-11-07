@@ -1,7 +1,7 @@
 import { IInputProps } from "@/interface";
 import { TextField } from "@mui/material";
 
-const Input = ({ label, type, register, error, defaultValue }: IInputProps) => {
+const Input = ({ label, type, register, error, defaultValue, checked }: IInputProps) => {
   return (
     <fieldset>
       <TextField

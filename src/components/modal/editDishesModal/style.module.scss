@@ -1,0 +1,8 @@
+@use "./../../../scss/abstracts/" as *;
+.modalOverlay {
+  @include modal-overlay;
+}
+
+.container{
+    background-color: $color-white;
+}

@@ -12,10 +12,10 @@ export interface IBuffetDatabase {
 }
 export interface IUpdateDish {
   id?: string;
-  name: string;
+  name?: string;
   extra?: boolean;
   level?: number;
-  timer?: number | null;
+  timer?: Date | number | null;
 }
 
 export interface IloginInput {
@@ -67,5 +67,6 @@ export interface IInputProps {
   error?: FieldError;
   defaultValue?: string | undefined | null;
   value?: boolean;
+  checked?:boolean
   onChange?: () => void;
 }

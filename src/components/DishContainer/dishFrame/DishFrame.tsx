@@ -2,7 +2,6 @@
 import styles from "./styles.module.scss";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import Timer from "@/components/chrono/Chrono";
 import { useFood } from "@/contexts/foodContext";
 import { IBuffetDatabase } from "@/interface";
@@ -16,17 +15,18 @@ const DishFrame = ({
   timer,
   id,
 }: IBuffetDatabase) => {
-  const { updateDishes, deleteFood, dishes, setDishes } = useFood();
+  const { updateDishes, deleteFood, dishes, setDishes, setEditModal } =
+    useFood();
   const location = window.location.pathname === "/saloon";
   const [dragging, setDragging] = useState(false);
 
   const handleRangeChange = (event: any) => {
     const newLevel = parseInt(event.target.value) - 1;
-    const newInfo = { level: newLevel, name: name };
+    const newInfo = { level: newLevel, name: name, id: id };
     updateDishes(newInfo);
   };
   const replenish = (event: any) => {
-    const replenishInfo = { name: name, level: 4 };
+    const replenishInfo = { name: name, level: 4, id: id };
     updateDishes(replenishInfo);
   };
   const fraction = () => {
@@ -52,17 +52,19 @@ const DishFrame = ({
     deleteFood(id!);
     const remainDishes = dishes.filter((dish) => dish.id !== id);
     setDishes(remainDishes);
+    setDragging(false);
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id={id}>
       <div
         className={dragging ? styles.dragging : styles.frameContainer}
         onClick={handleDragStart}
+        id={id}
       >
         <div className={styles[`level${level}`]}>{fraction()}</div>
-        <div className={frameClass}>
-          <div className={styles.infoContainer}>
+        <div className={frameClass} id={id}>
+          <div className={styles.infoContainer} id={id}>
             <div>
               <h1 className={styles.white}>{name}</h1>
               <div className={styles.categoryContainer}>
@@ -99,7 +101,13 @@ const DishFrame = ({
             className={styles.deleteBtn}
             onClick={deleteDish}
           />
-          <EditNoteIcon className={styles.editBtn} />
+          <button
+            className={styles.editBtn}
+            id={id}
+            onClick={() => setEditModal(true)}
+          >
+            Editar
+          </button>
         </div>
       )}
     </div>
