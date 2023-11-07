@@ -4,14 +4,16 @@ import styles from "./styles.module.scss";
 import { useFood } from "@/contexts/foodContext";
 import { useEffect } from "react";
 import { buffetManagerApi } from "@/requests/api";
+import EditDishModal from "../modal/editDishesModal/EditDishModal";
 
 const DishContainer = () => {
-  const { dishes, setDishes, load } = useFood();
+  const { dishes, setDishes, load, editModal, setDishToEditId, dishToEditId } =
+    useFood();
   useEffect(() => {
     const getDishes = async () => {
       try {
-        const dishes = await buffetManagerApi.get("/dishes");
-        setDishes(dishes.data);
+        const dishesResponse = await buffetManagerApi.get("/dishes");
+        setDishes(dishesResponse.data);
       } catch (error) {
         console.log(error);
       }
@@ -23,8 +25,16 @@ const DishContainer = () => {
     };
   }, []);
 
+  const eventSeeker = (e: any) => {
+    const isEditBtn = e.target.innerHTML === "Editar";
+    if (isEditBtn) {
+      setDishToEditId(e.target.id);
+    }
+  };
+
   return (
-    <div className={styles.dishContainer}>
+    <div className={styles.dishContainer} onClick={(e) => eventSeeker(e)}>
+      {editModal && <EditDishModal />}
       {dishes.length > 0 ? (
         !load ? (
           dishes.map((dish, i) => (
@@ -35,6 +45,7 @@ const DishContainer = () => {
               extra={dish.extra}
               level={dish.level}
               timer={dish.timer}
+              id={dish.id}
             />
           ))
         ) : (

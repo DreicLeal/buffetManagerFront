@@ -15,6 +15,8 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   const [dishes, setDishes] = useState<IBuffetDatabase[]>([]);
   const [modal, setModal] = useState<boolean>(false);
   const [load, setLoad] = useState<boolean>(false);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [dishToEditId, setDishToEditId] = useState<string>("");
 
   const addFood = async (dishData: IBuffetDatabase) => {
     try {
@@ -22,7 +24,6 @@ export const FoodProvider = ({ children }: IProviderProps) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setModal(!modal);
-      getDishes();
     } catch (error) {
       console.log(error);
     }
@@ -39,19 +40,20 @@ export const FoodProvider = ({ children }: IProviderProps) => {
     }
   };
 
-  const getDishes = async () => {
+  const deleteFood = async (dishId: string) => {
     try {
-      const dishes = await buffetManagerApi.get("/dishes");
-      setDishes(dishes.data);
+      await buffetManagerApi.delete(`/dishes/${dishId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updateDishes = async ({ name, level }: IUpdateDish) => {
-    const dishId = dishes.filter((dish) => dish.name === name);
+  const updateDishes = async ({ name, level, id, extra }: IUpdateDish) => {
+    const dishId = dishes.find((dish) => dish.id === id);
     let chrono;
-    if (level! < 3 && dishId[0].timer == null) {
+    if (level! < 3 && dishId!.timer == null) {
       chrono = new Date();
     }
 
@@ -59,11 +61,17 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       chrono = null;
     }
 
-    const newInfo = { level: level, timer: chrono };
+    const newInfo: IUpdateDish = { level: level, timer: chrono };
+    if (name) {
+      newInfo.name = name;
+    }
+    if (extra !== undefined) {
+      newInfo.extra = extra;
+    }
     try {
       setLoad(true);
       const dishUpdateResponse = await buffetManagerApi.patch(
-        `/dishes/${dishId[0].id}`,
+        `/dishes/${dishId!.id}`,
         newInfo
       );
       const updated = dishes.filter(
@@ -84,6 +92,12 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   return (
     <FoodContext.Provider
       value={{
+        dishToEditId,
+        setDishToEditId,
+        editModal,
+        setEditModal,
+        deleteFood,
+        setLoad,
         load,
         dishes,
         handleModal,

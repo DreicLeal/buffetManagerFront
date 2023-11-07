@@ -37,7 +37,13 @@ export interface FoodProviderData {
   modal: boolean;
   addFood: (dishData: IBuffetDatabase) => Promise<void>;
   setDishes: Dispatch<SetStateAction<IBuffetDatabase[]>>;
-  updateDishes: ({ name, timer }: IUpdateDish) => Promise<void>
+  updateDishes: ({ name, timer }: IUpdateDish) => Promise<void>;
   deleteAllFood: () => Promise<void>;
-  load: boolean
+  load: boolean;
+  setLoad: Dispatch<SetStateAction<boolean>>;
+  deleteFood: (dishId: string) => Promise<void>;
+  editModal: boolean;
+  setEditModal: Dispatch<SetStateAction<boolean>>;
+  dishToEditId: string;
+  setDishToEditId: Dispatch<SetStateAction<string>>;
 }
