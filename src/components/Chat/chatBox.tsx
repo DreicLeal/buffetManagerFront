@@ -29,9 +29,11 @@ const ChatBox = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<INewMessage>();
   const submit: SubmitHandler<INewMessage> = (messageContent) => {
     postMessages(messageContent);
+    reset();
     const interval = setInterval(() => {
       getMessages();
       scrollToBottom();
