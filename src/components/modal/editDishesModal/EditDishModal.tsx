@@ -18,7 +18,6 @@ const EditDishModal = () => {
   } = useForm<IUpdateDish>();
 
   const submit: SubmitHandler<IUpdateDish> = (formData) => {
-    // console.log(dishToEditId);
     const updatedData = {
       id: dishToEditId,
       name: formData.name,
@@ -44,15 +43,20 @@ const EditDishModal = () => {
             register={register("name")}
             error={errors.name}
           />
-          <Input
-            label="extra?"
-            type="checkbox"
-            register={register("extra")}
-            value={checkboxValue}
-            checked={checkboxValue}
-            onChange={() => setCheckboxValue(!checkboxValue)}
-          />
-          <button type="submit">Atualizar dados</button>
+          <div className={styles.extra}>
+            <span>extra?</span>
+            <Input
+              label="extra?"
+              type="checkbox"
+              register={register("extra")}
+              value={checkboxValue}
+              checked={checkboxValue}
+              onChange={() => setCheckboxValue(!checkboxValue)}
+            />
+          </div>
+          <button className={styles.submit} type="submit">
+            Atualizar dados
+          </button>
         </form>
       </div>
     </div>
