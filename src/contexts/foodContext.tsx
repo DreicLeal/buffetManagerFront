@@ -40,6 +40,15 @@ export const FoodProvider = ({ children }: IProviderProps) => {
     }
   };
 
+  const getDishes = async () => {
+    try {
+      const dishesResponse = await buffetManagerApi.get("/dishes");
+      setDishes(dishesResponse.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const deleteFood = async (dishId: string) => {
     try {
       await buffetManagerApi.delete(`/dishes/${dishId}`, {
@@ -92,6 +101,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   return (
     <FoodContext.Provider
       value={{
+        getDishes,
         dishToEditId,
         setDishToEditId,
         editModal,

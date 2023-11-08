@@ -15,8 +15,14 @@ const DishFrame = ({
   timer,
   id,
 }: IBuffetDatabase) => {
-  const { updateDishes, deleteFood, dishes, setDishes, setEditModal } =
-    useFood();
+  const {
+    updateDishes,
+    deleteFood,
+    dishes,
+    setDishes,
+    setEditModal,
+    getDishes,
+  } = useFood();
   const location = window.location.pathname === "/saloon";
   const [dragging, setDragging] = useState(false);
 
@@ -24,10 +30,12 @@ const DishFrame = ({
     const newLevel = parseInt(event.target.value) - 1;
     const newInfo = { level: newLevel, name: name, id: id };
     updateDishes(newInfo);
+    getDishes()
   };
   const replenish = (event: any) => {
     const replenishInfo = { name: name, level: 4, id: id };
     updateDishes(replenishInfo);
+    getDishes()
   };
   const fraction = () => {
     if (level! == 4 || level! == 3) {

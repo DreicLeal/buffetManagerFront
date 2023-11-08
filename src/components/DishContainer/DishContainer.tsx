@@ -3,26 +3,13 @@ import DishFrame from "./dishFrame/DishFrame";
 import styles from "./styles.module.scss";
 import { useFood } from "@/contexts/foodContext";
 import { useEffect } from "react";
-import { buffetManagerApi } from "@/requests/api";
 import EditDishModal from "../modal/editDishesModal/EditDishModal";
 
 const DishContainer = () => {
-  const { dishes, setDishes, load, editModal, setDishToEditId, dishToEditId } =
-    useFood();
+  const { dishes, load, editModal, setDishToEditId, getDishes } = useFood();
+  
   useEffect(() => {
-    const getDishes = async () => {
-      try {
-        const dishesResponse = await buffetManagerApi.get("/dishes");
-        setDishes(dishesResponse.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getDishes();
-    const interval = setInterval(getDishes, 2500);
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
 
   const eventSeeker = (e: any) => {

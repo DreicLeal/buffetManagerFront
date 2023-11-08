@@ -37,7 +37,7 @@ const ChatBox = () => {
     const interval = setInterval(() => {
       getMessages();
       scrollToBottom();
-    }, 3000);
+    }, 1500);
     return () => {
       clearInterval(interval);
     };
@@ -46,22 +46,33 @@ const ChatBox = () => {
   return (
     <div className={styles.chatContainer}>
       <ul className={styles.messagesContainer}>
-        {messages.map((message) => (
-          <li
-            key={message.id}
-            className={
-              user === message.user?.id ? styles.yourMessage : styles.partner
+        {messages
+          .sort((a, b) => {
+            if (a.created_at && b.created_at) {
+              return (
+                new Date(a.created_at).getTime() -
+                new Date(b.created_at).getTime()
+              );
+            } else {
+              return 0;
             }
-          >
-            <p>{message.text}</p>
-            <p className={styles.time}>
-              {message.created_at!.slice(
-                message.created_at!.indexOf("T") + 1,
-                message.created_at!.indexOf("T") + 6
-              )}
-            </p>
-          </li>
-        ))}
+          })
+          .map((message) => (
+            <li
+              key={message.id}
+              className={
+                user === message.user?.id ? styles.yourMessage : styles.partner
+              }
+            >
+              <p>{message.text}</p>
+              <p className={styles.time}>
+                {message.created_at!.slice(
+                  message.created_at!.indexOf("T") + 1,
+                  message.created_at!.indexOf("T") + 6
+                )}
+              </p>
+            </li>
+          ))}
         <div ref={messagesEndRef} />
       </ul>
       <form className={styles.msgForm} onSubmit={handleSubmit(submit)}>
