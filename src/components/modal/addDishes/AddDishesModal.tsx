@@ -6,7 +6,7 @@ import { useFood } from "@/contexts/foodContext";
 import { buffetFoodList } from "@/database/database";
 
 const AddFoodModal = () => {
-  const { handleModal, addFood } = useFood();
+  const { handleModal, addFood, getDishes } = useFood();
   const [inputValue, setInputValue] = useState("");
   const [checkboxValue, setCheckboxValue] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -24,14 +24,20 @@ const AddFoodModal = () => {
 
     setSuggestions(filterSuggestions);
   };
-  const filteredDish = buffetFoodList.filter(
-    (food) => food.name === inputValue
-  );
-  const dishData = { ...filteredDish[0], extra: checkboxValue };
+  const filteredDish = buffetFoodList.find((food) => food.name === inputValue);
+  const dishData = { ...filteredDish!, extra: checkboxValue };
   const addToInput = (event: any) => {
     const liValue = event.target.textContent;
     setInputValue(liValue);
     setSuggestions([]);
+  };
+
+  const addDishes = (newDish: any) => {
+    addFood(newDish);
+    const interval = setInterval(getDishes, 1500);
+    return () => {
+      clearInterval(interval);
+    };
   };
   return (
     <div className={styles.modalOverlay}>
@@ -61,7 +67,7 @@ const AddFoodModal = () => {
               onChange={handleCheckbox}
             />
           </div>
-          <button onClick={() => addFood(dishData)} className={styles.addBtn}>
+          <button onClick={() => addDishes(dishData)} className={styles.addBtn}>
             Adicionar
           </button>
         </ul>

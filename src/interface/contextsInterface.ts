@@ -46,4 +46,5 @@ export interface FoodProviderData {
   setEditModal: Dispatch<SetStateAction<boolean>>;
   dishToEditId: string;
   setDishToEditId: Dispatch<SetStateAction<string>>;
+  getDishes: () => Promise<void>
 }
