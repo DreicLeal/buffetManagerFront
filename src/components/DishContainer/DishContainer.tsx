@@ -6,11 +6,20 @@ import { useEffect } from "react";
 import EditDishModal from "../modal/editDishesModal/EditDishModal";
 
 const DishContainer = () => {
-  const { dishes, load, editModal, setDishToEditId, getDishes } = useFood();
-  
+  const {
+    dishes,
+    load,
+    editModal,
+    setDishToEditId,
+    getDishes,
+    setDishChange,
+    dishChange,
+  } = useFood();
+
   useEffect(() => {
     getDishes();
-  }, []);
+    setDishChange(false);
+  }, [dishChange, dishes]);
 
   const eventSeeker = (e: any) => {
     const isEditBtn = e.target.innerHTML === "Editar";

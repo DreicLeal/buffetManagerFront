@@ -1,5 +1,5 @@
 "use client";
-import styles from "./../styles.module.scss"
+import styles from "./../styles.module.scss";
 import ChatBox from "@/components/Chat/chatBox";
 import DishContainer from "@/components/DishContainer/DishContainer";
 import Header from "@/components/Header/header";

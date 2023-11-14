@@ -22,6 +22,7 @@ const DishFrame = ({
     setDishes,
     setEditModal,
     getDishes,
+    setDishChange,
   } = useFood();
   const location = window.location.pathname === "/saloon";
   const [dragging, setDragging] = useState(false);
@@ -30,12 +31,14 @@ const DishFrame = ({
     const newLevel = parseInt(event.target.value) - 1;
     const newInfo = { level: newLevel, name: name, id: id };
     updateDishes(newInfo);
-    getDishes()
+    setDishChange(true);
+    // setTimeout(getDishes, 500);
   };
   const replenish = (event: any) => {
     const replenishInfo = { name: name, level: 4, id: id };
     updateDishes(replenishInfo);
-    getDishes()
+    setDishChange(true);
+    // setTimeout(getDishes, 500);
   };
   const fraction = () => {
     if (level! == 4 || level! == 3) {
@@ -61,6 +64,7 @@ const DishFrame = ({
     const remainDishes = dishes.filter((dish) => dish.id !== id);
     setDishes(remainDishes);
     setDragging(false);
+    setDishChange(true);
   };
 
   return (

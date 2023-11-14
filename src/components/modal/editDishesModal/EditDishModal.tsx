@@ -8,7 +8,8 @@ import Input from "@/components/Input";
 import { useState } from "react";
 
 const EditDishModal = () => {
-  const { editModal, setEditModal, updateDishes, dishToEditId } = useFood();
+  const { editModal, setEditModal, updateDishes, dishToEditId, setDishChange } =
+    useFood();
   const [checkboxValue, setCheckboxValue] = useState(false);
 
   const {
@@ -25,6 +26,7 @@ const EditDishModal = () => {
     };
     updateDishes(updatedData);
     setEditModal(!editModal);
+    setDishChange(true);
   };
 
   return (

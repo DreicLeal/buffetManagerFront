@@ -1,7 +1,7 @@
 "use client";
 import { IBuffetDatabase, IUpdateDish } from "@/interface";
 import { buffetManagerApi } from "@/requests/api";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useUser } from "./userContext";
 import {
   FoodProviderData,
@@ -17,6 +17,13 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   const [load, setLoad] = useState<boolean>(false);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [dishToEditId, setDishToEditId] = useState<string>("");
+  const [dishChange, setDishChange] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (dishChange) {
+      getDishes();
+    }
+  }, [dishChange]);
 
   const addFood = async (dishData: IBuffetDatabase) => {
     try {
@@ -26,6 +33,8 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       setModal(!modal);
     } catch (error) {
       console.log(error);
+    } finally {
+      getDishes();
     }
   };
   const deleteAllFood = async () => {
@@ -37,13 +46,20 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       setEndModal(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      getDishes();
     }
   };
 
   const getDishes = async () => {
     try {
       const dishesResponse = await buffetManagerApi.get("/dishes");
-      setDishes(dishesResponse.data);
+      const responseType = typeof dishesResponse;
+      if (responseType === "string") {
+        setDishes([]);
+      } else {
+        setDishes(dishesResponse.data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -54,6 +70,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       await buffetManagerApi.delete(`/dishes/${dishId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      getDishes();
     } catch (error) {
       console.log(error);
     }
@@ -87,6 +104,7 @@ export const FoodProvider = ({ children }: IProviderProps) => {
         (dish) => dish.id !== dishUpdateResponse.data.id
       );
       setDishes([...updated, ...dishUpdateResponse.data.id]);
+      getDishes();
     } catch (error) {
       console.log(error);
     } finally {
@@ -116,6 +134,8 @@ export const FoodProvider = ({ children }: IProviderProps) => {
         deleteAllFood,
         setDishes,
         updateDishes,
+        setDishChange,
+        dishChange,
       }}
     >
       {children}
