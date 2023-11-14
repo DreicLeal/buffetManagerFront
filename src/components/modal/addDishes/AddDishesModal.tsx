@@ -6,7 +6,7 @@ import { useFood } from "@/contexts/foodContext";
 import { buffetFoodList } from "@/database/database";
 
 const AddFoodModal = () => {
-  const { handleModal, addFood, getDishes } = useFood();
+  const { handleModal, addFood, setDishChange } = useFood();
   const [inputValue, setInputValue] = useState("");
   const [checkboxValue, setCheckboxValue] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -34,10 +34,7 @@ const AddFoodModal = () => {
 
   const addDishes = (newDish: any) => {
     addFood(newDish);
-    const interval = setInterval(getDishes, 1500);
-    return () => {
-      clearInterval(interval);
-    };
+    setDishChange(true);
   };
   return (
     <div className={styles.modalOverlay}>
