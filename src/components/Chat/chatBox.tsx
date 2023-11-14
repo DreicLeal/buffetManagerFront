@@ -1,11 +1,11 @@
 "use client";
-import { useUser } from "@/contexts/userContext";
-import { INewMessage } from "@/interface";
-import { Input } from "../Input";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useEffect, useRef } from "react";
+import Input from "../Input";
 import SendIcon from "@mui/icons-material/Send";
 import styles from "./styles.module.scss";
+import { useUser } from "@/contexts/userContext";
+import { INewMessage } from "@/interface";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useEffect, useRef } from "react";
 
 const ChatBox = () => {
   const { postMessages, getMessages, messages, handleCheckbox, rocketMsg } =
@@ -21,13 +21,6 @@ const ChatBox = () => {
   useEffect(() => {
     getMessages();
     scrollToBottom();
-    const interval = setInterval(() => {
-      getMessages();
-      scrollToBottom();
-    }, 3000);
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
 
   const saloon = window.location.pathname === "/saloon";
@@ -36,30 +29,50 @@ const ChatBox = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<INewMessage>();
   const submit: SubmitHandler<INewMessage> = (messageContent) => {
     postMessages(messageContent);
+    reset();
+    const interval = setInterval(() => {
+      getMessages();
+      scrollToBottom();
+    }, 1500);
+    return () => {
+      clearInterval(interval);
+    };
   };
 
   return (
     <div className={styles.chatContainer}>
       <ul className={styles.messagesContainer}>
-        {messages.map((message) => (
-          <li
-            key={message.id}
-            className={
-              user === message.user?.id ? styles.yourMessage : styles.partner
+        {messages
+          .sort((a, b) => {
+            if (a.created_at && b.created_at) {
+              return (
+                new Date(a.created_at).getTime() -
+                new Date(b.created_at).getTime()
+              );
+            } else {
+              return 0;
             }
-          >
-            <p>{message.text}</p>
-            <p className={styles.time}>
-              {message.created_at!.slice(
-                message.created_at!.indexOf("T") + 1,
-                message.created_at!.indexOf("T") + 6
-              )}
-            </p>
-          </li>
-        ))}
+          })
+          .map((message) => (
+            <li
+              key={message.id}
+              className={
+                user === message.user?.id ? styles.yourMessage : styles.partner
+              }
+            >
+              <p>{message.text}</p>
+              <p className={styles.time}>
+                {message.created_at!.slice(
+                  message.created_at!.indexOf("T") + 1,
+                  message.created_at!.indexOf("T") + 6
+                )}
+              </p>
+            </li>
+          ))}
         <div ref={messagesEndRef} />
       </ul>
       <form className={styles.msgForm} onSubmit={handleSubmit(submit)}>

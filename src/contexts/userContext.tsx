@@ -1,4 +1,5 @@
 "use client";
+import { baseURL } from "@/database/database";
 import {
   IMessage,
   INewMessage,
@@ -45,7 +46,7 @@ export const UserProvider = ({ children }: IProviderProps) => {
       const { dishes, messages, ...rest } = res.data;
       setUser(rest.id);
       localStorage.setItem("@UserId", rest.id);
-      window.location.replace("http://localhost:3000/lobby");
+      window.location.replace(`${baseURL}/lobby`);
     } catch (error) {
       console.log(error);
     }

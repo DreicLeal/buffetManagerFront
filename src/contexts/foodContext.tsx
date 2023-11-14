@@ -1,7 +1,7 @@
 "use client";
 import { IBuffetDatabase, IUpdateDish } from "@/interface";
 import { buffetManagerApi } from "@/requests/api";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useUser } from "./userContext";
 import {
   FoodProviderData,
@@ -14,7 +14,16 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   const { token, setEndModal } = useUser();
   const [dishes, setDishes] = useState<IBuffetDatabase[]>([]);
   const [modal, setModal] = useState<boolean>(false);
-  const [load , setLoad] = useState<boolean>(false)
+  const [load, setLoad] = useState<boolean>(false);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [dishToEditId, setDishToEditId] = useState<string>("");
+  const [dishChange, setDishChange] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (dishChange) {
+      getDishes();
+    }
+  }, [dishChange]);
 
   const addFood = async (dishData: IBuffetDatabase) => {
     try {
@@ -22,9 +31,10 @@ export const FoodProvider = ({ children }: IProviderProps) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setModal(!modal);
-      getDishes();
     } catch (error) {
       console.log(error);
+    } finally {
+      getDishes();
     }
   };
   const deleteAllFood = async () => {
@@ -36,22 +46,40 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       setEndModal(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      getDishes();
     }
   };
 
   const getDishes = async () => {
     try {
-      const dishes = await buffetManagerApi.get("/dishes");
-      setDishes(dishes.data);
+      const dishesResponse = await buffetManagerApi.get("/dishes");
+      const responseType = typeof dishesResponse;
+      if (responseType === "string") {
+        setDishes([]);
+      } else {
+        setDishes(dishesResponse.data);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updateDishes = async ({ name, level }: IUpdateDish) => {
-    const dishId = dishes.filter((dish) => dish.name === name);
+  const deleteFood = async (dishId: string) => {
+    try {
+      await buffetManagerApi.delete(`/dishes/${dishId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      getDishes();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateDishes = async ({ name, level, id, extra }: IUpdateDish) => {
+    const dishId = dishes.find((dish) => dish.id === id);
     let chrono;
-    if (level! < 3 && dishId[0].timer == null) {
+    if (level! < 3 && dishId!.timer == null) {
       chrono = new Date();
     }
 
@@ -59,21 +87,28 @@ export const FoodProvider = ({ children }: IProviderProps) => {
       chrono = null;
     }
 
-    const newInfo = { level: level, timer: chrono };
+    const newInfo: IUpdateDish = { level: level, timer: chrono };
+    if (name) {
+      newInfo.name = name;
+    }
+    if (extra !== undefined) {
+      newInfo.extra = extra;
+    }
     try {
-      setLoad(true)
+      setLoad(true);
       const dishUpdateResponse = await buffetManagerApi.patch(
-        `/dishes/${dishId[0].id}`,
+        `/dishes/${dishId!.id}`,
         newInfo
       );
       const updated = dishes.filter(
         (dish) => dish.id !== dishUpdateResponse.data.id
       );
       setDishes([...updated, ...dishUpdateResponse.data.id]);
+      getDishes();
     } catch (error) {
       console.log(error);
-    } finally{
-      setLoad(false)
+    } finally {
+      setLoad(false);
     }
   };
 
@@ -84,6 +119,13 @@ export const FoodProvider = ({ children }: IProviderProps) => {
   return (
     <FoodContext.Provider
       value={{
+        getDishes,
+        dishToEditId,
+        setDishToEditId,
+        editModal,
+        setEditModal,
+        deleteFood,
+        setLoad,
         load,
         dishes,
         handleModal,
@@ -92,6 +134,8 @@ export const FoodProvider = ({ children }: IProviderProps) => {
         deleteAllFood,
         setDishes,
         updateDishes,
+        setDishChange,
+        dishChange,
       }}
     >
       {children}

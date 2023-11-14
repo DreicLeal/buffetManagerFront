@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useUser } from "@/contexts/userContext";
 
-export default function Lobby() {
+const Lobby = () => {
   const { token } = useUser();
   return (
     <>
@@ -17,4 +17,5 @@ export default function Lobby() {
       )}
     </>
   );
-}
+};
+export default Lobby;

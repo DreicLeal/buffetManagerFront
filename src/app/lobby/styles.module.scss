@@ -1,3 +1,4 @@
+@use "./../../scss/abstracts/" as *;
 .linkContainer {
   display: flex;
   justify-content: center;
@@ -14,8 +15,8 @@
     width: fit-content;
     min-width: 165px;
     padding: 5px;
-    background-color: rgb(40, 253, 104);
-    color: #5c625a;
+    background-color: $color-green-1;
+    color: $color-grey-1;
     font-size: 40px;
     font-weight: 700;
   }

@@ -1,24 +1,11 @@
+@use "./../../../scss/abstracts/" as *;
 .modalOverlay {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100vw;
-  height: 100vh;
-
+  @include modal-overlay;
   .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: white;
+    background-color: $color-white;
     height: 200px;
     padding: 10px;
     border-radius: 6px;
@@ -32,7 +19,7 @@
         height: 30px;
       }
     }
-    .extraDish{
+    .extraDish {
       display: flex;
       font-weight: 500;
       font-size: 14px;
@@ -42,11 +29,11 @@
       font-size: 20px;
       width: fit-content;
       border-radius: 4px;
-      background-color: rgb(40, 253, 104);
+      background-color: $color-green-1;
       font-weight: 600;
       height: 35px;
       padding: 4px;
-      color: #5c625a;
+      color: $color-grey-1;
     }
   }
 }

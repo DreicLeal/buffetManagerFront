@@ -1,14 +1,7 @@
 import { IInputProps } from "@/interface";
 import { TextField } from "@mui/material";
 
-
-export const Input = ({
-  label,
-  type,
-  register,
-  error,
-  defaultValue,
-}: IInputProps) => {
+const Input = ({ label, type, register, error, defaultValue, checked }: IInputProps) => {
   return (
     <fieldset>
       <TextField
@@ -21,3 +14,4 @@ export const Input = ({
     </fieldset>
   );
 };
+export default Input;

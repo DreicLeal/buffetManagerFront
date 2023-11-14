@@ -1,30 +1,36 @@
 "use client";
-import { useFood } from "@/contexts/foodContext";
 import DishFrame from "./dishFrame/DishFrame";
 import styles from "./styles.module.scss";
+import { useFood } from "@/contexts/foodContext";
 import { useEffect } from "react";
-import { buffetManagerApi } from "@/requests/api";
+import EditDishModal from "../modal/editDishesModal/EditDishModal";
 
-export default function DishContainer() {
-  const { dishes, setDishes, load } = useFood();
+const DishContainer = () => {
+  const {
+    dishes,
+    load,
+    editModal,
+    setDishToEditId,
+    getDishes,
+    setDishChange,
+    dishChange,
+  } = useFood();
+
   useEffect(() => {
-    const getDishes = async () => {
-      try {
-        const dishes = await buffetManagerApi.get("/dishes");
-        setDishes(dishes.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getDishes();
-    const interval = setInterval(getDishes, 2500);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+    setDishChange(false);
+  }, [dishChange, dishes]);
+
+  const eventSeeker = (e: any) => {
+    const isEditBtn = e.target.innerHTML === "Editar";
+    if (isEditBtn) {
+      setDishToEditId(e.target.id);
+    }
+  };
 
   return (
-    <div className={styles.dishContainer}>
+    <div className={styles.dishContainer} onClick={(e) => eventSeeker(e)}>
+      {editModal && <EditDishModal />}
       {dishes.length > 0 ? (
         !load ? (
           dishes.map((dish, i) => (
@@ -35,6 +41,7 @@ export default function DishContainer() {
               extra={dish.extra}
               level={dish.level}
               timer={dish.timer}
+              id={dish.id}
             />
           ))
         ) : (
@@ -45,4 +52,5 @@ export default function DishContainer() {
       )}
     </div>
   );
-}
+};
+export default DishContainer;

@@ -1,0 +1,35 @@
+@use "./../../../scss/abstracts/" as *;
+.modalOverlay {
+  @include modal-overlay;
+}
+
+.container {
+  background-color: $color-white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 4px;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .extra{
+      display: flex;
+      gap: 5px;
+    }
+  }
+  .closeBtn {
+    align-self: flex-end;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .submit {
+    padding: 5px;
+    background-color: $color-green-1;
+    color: $color-white;
+  }
+}

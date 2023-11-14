@@ -1,13 +1,52 @@
-.frameContainer {
+@use "./../../../scss/abstracts/" as *;
+
+.container {
   display: flex;
-  border: 1px solid #5b5a62;
+  justify-content: center;
+  width: 98%;
+  .editButtons {
+    margin-right: 8px;
+    display: flex;
+    gap: 2px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 77px;
+    width: 50px;
+    background-color: $color-blue-1;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    .deleteBtn,
+    .editBtn {
+      width: fit-content;
+      padding: 2px;
+      height: 40%;
+      border-radius: 4px;
+      color: $color-white;
+      background-color: $color-grey-1;
+    }
+  }
+}
+
+.displayNone {
+  display: none;
+}
+.frameContainer,
+.dragging {
+  display: flex;
+  border: 1px solid $color-grey-1;
   border-radius: 4px;
   margin-bottom: 2px;
-  width: 98%;
+  width: 99%;
+  transition: 0.5s;
+}
+.dragging {
+  transform: translateX(-50px);
 }
 .frame {
   display: flex;
-  background-color: #5b5a62;
+  background-color: $color-grey-1;
   flex-direction: column;
   justify-content: space-between;
   padding: 4px;
@@ -28,7 +67,7 @@
   align-items: center;
 }
 .chronoContainer > p {
-  color: #ffffff;
+  color: $color-white;
   font-size: 32px;
   font-weight: 700;
 }
@@ -37,7 +76,7 @@
   flex-direction: column;
   align-items: center;
   .replenishBtn {
-    background-color: white;
+    background-color: $color-white;
     margin: 2px;
     border-radius: 4px;
     height: 35px;
@@ -47,10 +86,15 @@
     border-radius: 4px;
     width: 35px;
     height: 20px;
+    font-weight: 900;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 .white {
-  color: #ffffff;
+  color: $color-white;
 }
 .level0,
 .level1,
@@ -85,5 +129,5 @@
 }
 
 .level4 {
-  background-color: rgb(40, 253, 104);
+  background-color: $color-green-1;
 }

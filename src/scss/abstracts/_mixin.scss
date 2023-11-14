@@ -1,0 +1,64 @@
+@use "./variables" as *;
+
+.btn-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  font-size: 40px;
+  background-color: $color-green-1;
+  border-radius: 6px;
+  font-weight: 700;
+  color: $color-grey-1;
+}
+.btn-2 {
+  font-size: 20px;
+  width: fit-content;
+  border-radius: 4px;
+  background-color: $color-green-1;
+  font-weight: 600;
+  height: 35px;
+  padding: 4px;
+  color: $color-grey-1;
+}
+.close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  font-size: 40px;
+  background-color: $color-green-1;
+  border-radius: 4px;
+  font-weight: 700;
+  color: $color-grey-1;
+}
+.msg-btn {
+  background-color: $color-green-1;
+  color: $color-white;
+  width: 50px;
+  border: 1px solid $color-grey-1;
+  border-radius: 4px;
+  svg {
+    width: 70%;
+    height: 60%;
+  }
+}
+
+@mixin modal-overlay {
+  background-color: $color-black-2;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+}
